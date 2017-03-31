@@ -18,8 +18,52 @@ class Welcome extends CI_Controller{
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+	/* public function index()
+	 {
+	 	$this->load->view('welcome_message');
+   }*/
+
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		//$data['contenido'] = 'ruta a la vista dinamica';
+		$data['encabezado'] = 'mountain/encabezado';
+		$data['menu'] = 'mountain/menu';
+		$data['contenido'] = 'mountain/contenido/contenido_dashboard';
+    $data['title'] = 'Mountain';
+    //$data['title'] = $title['title'] = 'Mountain';
+
+		//$this->load->view('header');
+    $this->load->helper('url');
+		$this->load->view('template_mountain',$data);
+		//$this->load->view('footer');
+	}
+  public function empy_page()
+	{
+		//$data['contenido'] = 'ruta a la vista dinamica';
+		$data['encabezado'] = 'mountain/encabezado';
+		$data['menu'] = 'mountain/menu';
+		$data['contenido'] = 'mountain/contenido/contenido_empy';
+    $data['title'] = 'Mountain';
+    //$data['title'] = $title['title'] = 'Mountain';
+
+		//$this->load->view('header');
+    $this->load->helper('url');
+		$this->load->view('template_mountain',$data);
+		//$this->load->view('footer');
+	}
+
+  public function chart()
+	{
+		//$data['contenido'] = 'ruta a la vista dinamica';
+		$data['encabezado'] = 'mountain/encabezado';
+		$data['menu'] = 'mountain/menu';
+		$data['contenido'] = 'mountain/contenido/contenido_chart';
+    $data['title'] = 'Mountain';
+    //$data['title'] = $title['title'] = 'Mountain';
+
+		//$this->load->view('header');
+    $this->load->helper('url');
+		$this->load->view('template_mountain',$data);
+		//$this->load->view('footer');
 	}
 }
