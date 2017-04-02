@@ -6,7 +6,7 @@
 						<p>Tell us what you think about our little operation.</p>
 					</header>
 					<div class="box">
-						<form method="post" action="../mountain">
+						<form method="post" action="../administracion/index">
 							<div class="row uniform 50%">
 								<div class="6u 12u(mobilep)">
 									<input type="text" name="user" id="user" value="" placeholder="Usuario" />
