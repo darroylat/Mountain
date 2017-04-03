@@ -8,10 +8,12 @@
 					<div class="box">
 						<form method="post" action="../administracion/index">
 							<div class="row uniform 50%">
-								<div class="6u 12u(mobilep)">
+								<div class="12u">
 									<input type="text" name="user" id="user" value="" placeholder="Usuario" />
 								</div>
-								<div class="6u 12u(mobilep)">
+							</div>
+							<div class="row uniform 50%">
+								<div class="12u">
 									<input type="password" name="pass" id="pass" value="" placeholder="Contraseña" />
 								</div>
 							</div>
