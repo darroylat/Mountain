@@ -21,7 +21,7 @@
 									</li>
 								</ul>
 							</li>
-							<li><a href="ingresa" class="button">Ingresar</a></li>
+							<li><a href="../ingresa" class="button">Ingresar</a></li>
 						</ul>
 					</nav>
 				</header>

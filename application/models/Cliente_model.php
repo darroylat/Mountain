@@ -1,40 +1,28 @@
 <?php
 class Cliente_model extends CI_Model {
 
-        public $id;
-        public $title;
-        public $content;
-        public $date;
+        public $idcliente;
+        public $usuariocliente;
+        public $passcliente;
+        public $mailcliente;
+        public $recibircliente;
+        public $nombrecliente;
 
         public function __construct()	{
           $this->load->database();
         }
-        public function get_last_ten_entries()
-        {
-                $query = $this->db->get('entries', 10);
-                return $query->result();
+
+        public function select_cuenta_usuario($usuario, $contrasena){
+                $this->usuariocliente = $this->input->post('user');
+                $this->passcliente    = $this->input->post('pass');
+
+              $query = $this->db->get_where('cliente', array('usuariocliente' => $usuario, 'passcliente' => $contrasena));
+              return $query->row_array();
         }
 
-        public function insert_entry()
-        {
-                $this->title    = $_POST['title']; // please read the below note
-                $this->content  = $_POST['content'];
-                $this->date     = time();
-
-                $this->db->insert('entries', $this);
-        }
-
-        public function update_entry()
-        {
-                $this->title    = $_POST['title'];
-                $this->content  = $_POST['content'];
-                $this->date     = time();
-
-                $this->db->update('entries', $this, array('id' => $_POST['id']));
-        }
-
+        //Funcionando
         public function get_where_one($id){
-            $query = $this->db->get_where('gam_neg_cliente',array('id_cliente' => $id));
+            $query = $this->db->get_where('cliente',array('idcliente' => $id));
             return $query->row_array();
         }
 

@@ -24,25 +24,27 @@ class Cliente extends CI_Controller{
 	}
 
   public function registro($id){
-
+/*
     $config['hostname'] = 'localhost';
     $config['username'] = 'root';
     $config['password'] = '';
-    $config['database'] = 'gam_cliente';
+    $config['database'] = 'mountain_admin';
     $config['dbdriver'] = 'mysqli';
     $config['dbprefix'] = '';
     $config['pconnect'] = FALSE;
     $config['db_debug'] = TRUE;
-
+*/
     if (isset($id)) {
-      $this->load->model('cliente_model','',$config);
-      $query = $this->cliente_model->get_where_one($id);
+      //$this->load->model('Admin_model','',$config);
+			$this->load->model('Admin_model');
+      $query = $this->Admin_model->get_where_one($id);
 
-      if ($query['id_cliente'] == $id && $query['user_cliente'] == 'gam') {
+      if ($query['idcliente'] == $id && $query['usuariocliente'] == 'mountain') {
 
           $data['header'] = 'principal/header_oscuro';
           $data['main'] = 'principal/cliente/registro';
           $data['footer'] = 'principal/footer';
+					$data['id'] = $id;
 
           $this->load->helper('url');
           //$this->load->view('principal/contacto/contacto');
@@ -62,5 +64,38 @@ class Cliente extends CI_Controller{
     }
 
   }
+	public function ingresar(){
 
+		  $this->load->helper('url');
+			
+		$usuario = $this->input->post("user");
+		$contrasena = $this->input->post("pass");
+		$this->load->model('Cliente_model');
+		$query = $this->Cliente_model->select_cuenta_usuario($usuario, $contrasena);
+		if($query != null){
+			echo "encontro usuario";
+			redirect('/administracion/');
+		}else{
+			echo "no encontrado";
+		}
+
+	}
+	public function registrar(){
+		$nombre = $this->input->post("nombre");
+		$usuario = $this->input->post("user");
+		$contrasena = $this->input->post("pass");
+		$recontrasena = $this->input->post("cpass");
+		$correo = $this->input->post("mail");
+		$id = $this->input->post("id");
+
+		if (isset($nombre) && isset($usuario) && isset($contrasena) && isset($recontrasena) && isset($correo)) {
+			if ($contrasena == $recontrasena) {
+				$this->load->model('Admin_model');
+	      $query = $this->Admin_model->update_entry($nombre, $usuario, $contrasena, $correo, $id);
+				if ($query) {
+					//TODO ir al panel de control del cliente
+				}
+			}
+		}
+	}
 }

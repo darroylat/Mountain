@@ -6,7 +6,7 @@
 						<p>Todos los datos son requeridos</p>
 					</header>
 					<div class="box">
-						<form method="post" action="../cliente/registrar">
+						<form method="post" action="../registrar">
               <div class="row uniform 50%">
 								<div class="12u">
 									<input type="text" name="nombre" id="nombre" value="" placeholder="Nombre Completo" />
@@ -35,6 +35,7 @@
 							<div class="row uniform">
 								<div class="12u">
 									<ul class="actions align-center">
+										<input type="hidden" name="id" id="id" value="<?php echo $id ?>"/>
 										<li><input type="submit" value="Registrar" /></li>
 									</ul>
 								</div>

@@ -21,9 +21,11 @@
             if (isset($banner)) {
               $this->load->view($banner);
             }
-            if (isset($main)) {
-              $this->load->view($main);
-            }
+            if (isset($main) && isset($id)) {
+              $this->load->view($main,$id);
+            }else{
+							$this->load->view($main);
+						}
             if (isset($cta)) {
               $this->load->view($cta);
             }
