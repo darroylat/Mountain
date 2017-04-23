@@ -28,7 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 define('SERVER_NAME_DEV', 'localhost');
 define('SERVER_NAME_EMPRESA', 'mountain.lerolero.cl');
 define('SERVER_NAME_FINAL', 'www.mountain.cl');
-define('SERVER_NAME_LOCAL', '192.168.1.110/mountain');
+define('SERVER_NAME_LOCAL', '192.168.1.110');
 
 $nombreServerActual = $_SERVER['SERVER_NAME'];
 switch($nombreServerActual)
