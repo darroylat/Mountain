@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 //$config['base_url'] = '/';
-
+/*
 define('SERVER_NAME_DEV', 'localhost');
 define('SERVER_NAME_EMPRESA', 'mountain.lerolero.cl');
 define('SERVER_NAME_FINAL', 'www.mountain.cl');
@@ -48,8 +48,8 @@ switch($nombreServerActual)
     default:
             $config['base_url']    = $_SERVER['SERVER_NAME'];
             break;
-}
-
+}*/
+$config['base_url'] = '';
 /*
 |--------------------------------------------------------------------------
 | Index File
