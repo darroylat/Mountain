@@ -28,6 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 define('SERVER_NAME_DEV', 'localhost');
 define('SERVER_NAME_EMPRESA', 'mountain.lerolero.cl');
 define('SERVER_NAME_FINAL', 'www.mountain.cl');
+define('SERVER_NAME_LOCAL', '192.168.1.110/mountain');
 
 $nombreServerActual = $_SERVER['SERVER_NAME'];
 switch($nombreServerActual)
@@ -40,6 +41,9 @@ switch($nombreServerActual)
             break;
     case SERVER_NAME_FINAL:
             $config['base_url']    = "http://www.mountain.cl";
+            break;
+    case SERVER_NAME_LOCAL:
+            $config['base_url']    = "http://192.168.1.110/mountain/";
             break;
     default:
             $config['base_url']    = "http://192.168.1.59/mountain/";

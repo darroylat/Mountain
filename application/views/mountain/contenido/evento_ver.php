@@ -45,8 +45,9 @@
                                             <td>Parque Metropolitano</td>
                                             <td>Parque Metropolitano</td>
                                             <td>Parque Metropolitano</td>
-                                            <td>Parque Metropolitano</td>
+                                            <td>Parque Metropolitano</td>glyphicon glyphicon-eye-open
                                             <td>
+                                              <button type="button" name="button" class="btn btn-primary glyphicon glyphicon-eye-open"></button>
                                               <button type="button" name="button" class="btn btn-success glyphicon glyphicon-edit"></button>
                                               <button type="button" name="button" class="btn btn-danger glyphicon glyphicon-trash"></button>
                                             </td>
@@ -63,6 +64,7 @@
                                             <td>Otto</td>
                                             <td>@mdo</td>
                                             <td>
+                                              <button type="button" name="button" class="btn btn-primary glyphicon glyphicon-eye-open"></button>
                                               <button type="button" name="button" class="btn btn-success glyphicon glyphicon-edit"></button>
                                               <button type="button" name="button" class="btn btn-danger glyphicon glyphicon-trash"></button>
                                             </td>
@@ -79,6 +81,7 @@
                                             <td>Otto</td>
                                             <td>@mdo</td>
                                             <td>
+                                              <button type="button" name="button" class="btn btn-primary glyphicon glyphicon-eye-open"></button>
                                               <button type="button" name="button" class="btn btn-success glyphicon glyphicon-edit"></button>
                                               <button type="button" name="button" class="btn btn-danger glyphicon glyphicon-trash"></button>
                                             </td>
