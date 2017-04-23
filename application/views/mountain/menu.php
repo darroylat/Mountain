@@ -1,27 +1,38 @@
 <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
+                    <li>
+                      <a href="<?php echo base_url(); ?>administracion/index"><i class="fa fa-home"></i> Inicio</a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-edit"></i> Agregar<span class="fa arrow"></span></a>
+                      <ul class="nav nav-second-level">
+                        <li>
+                            <a href="<?php echo base_url(); ?>administracion/lugar/nuevo">Nueva Ubicacion</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url(); ?>administracion/sendero/nuevo">Nuevo Sendero</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url(); ?>administracion/equipamiento/nuevo">Nuevo Equipamiento</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-table"></i> Eventos<span class="fa arrow"></span></a>
+                      <ul class="nav nav-second-level">
+                        <li>
+                            <a href="<?php echo base_url(); ?>administracion/evento/nuevo">Nueva Salida</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url(); ?>administracion/evento/ver">Ver Salidas</a>
+                        </li>
+                      </ul>
+                    </li>
 
                     <li>
                         <a class="active-menu" href="index"><i class="fa fa-dashboard"></i> Dashboard</a>
                     </li>
-                    <li>
-                        <a href="ui-elements.html"><i class="fa fa-desktop"></i> UI Elements</a>
-                    </li>
-					          <li>
-                        <a href="chart"><i class="fa fa-bar-chart-o"></i> Charts</a>
-                    </li>
-                    <li>
-                        <a href="tab-panel.html"><i class="fa fa-qrcode"></i> Tabs & Panels</a>
-                    </li>
-
-                    <li>
-                        <a href="table.html"><i class="fa fa-table"></i> Responsive Tables</a>
-                    </li>
-                    <li>
-                        <a href="form.html"><i class="fa fa-edit"></i> Forms </a>
-                    </li>
-
 
                     <li>
                         <a href="#"><i class="fa fa-sitemap"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>

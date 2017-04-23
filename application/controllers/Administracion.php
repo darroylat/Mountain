@@ -47,4 +47,62 @@ class Administracion extends CI_Controller{
 		$this->load->view('template_mountain',$data);
 		//$this->load->view('footer');
 	}
+	public function lugar($parametro){
+
+		if ($parametro == 'nuevo') {
+			$data['contenido'] = 'mountain/contenido/lugar_nuevo';
+		}elseif ($parametro == 'ver') {
+			$data['contenido'] = 'mountain/contenido/lugar_ver';
+		}else {
+			//TODO proximo 404 para la pagina de administracion
+		}
+		$data['encabezado'] = 'mountain/encabezado';
+		$data['menu'] = 'mountain/menu';
+    $data['title'] = 'Mountain';
+
+		$this->load->helper('url');
+		$this->load->view('template_mountain',$data);
+	}
+	public function evento($parametro){
+		if ($parametro == 'nuevo') {
+			$data['contenido'] = 'mountain/contenido/evento_nuevo';
+		}elseif($parametro == 'ver'){
+			$data['contenido'] = 'mountain/contenido/evento_ver';
+		}else{
+			//TODO proximo 404 para la pagina de administracion
+			//$data['contenido'] = 'mountain/contenido/evento_ver';
+		}
+		$data['encabezado'] = 'mountain/encabezado';
+		$data['menu'] = 'mountain/menu';
+    $data['title'] = 'Mountain';
+
+		$this->load->helper('url');
+		$this->load->view('template_mountain',$data);
+	}
+	public function sendero($parametro){
+		if ($parametro == 'nuevo') {
+			$data['contenido'] = 'mountain/contenido/sendero_nuevo';
+		}else{
+			# code...
+		}
+		$data['encabezado'] = 'mountain/encabezado';
+		$data['menu'] = 'mountain/menu';
+    $data['title'] = 'Mountain';
+
+		$this->load->helper('url');
+		$this->load->view('template_mountain',$data);
+	}
+	public function equipamiento($parametro){
+		if ($parametro == 'nuevo') {
+			$data['contenido'] = 'mountain/contenido/equipamiento_nuevo';
+		}else{
+			# code...
+		}
+		$data['encabezado'] = 'mountain/encabezado';
+		$data['menu'] = 'mountain/menu';
+    $data['title'] = 'Mountain';
+
+		$this->load->helper('url');
+		$this->load->view('template_mountain',$data);
+	}
 }

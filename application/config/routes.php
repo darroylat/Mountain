@@ -54,3 +54,12 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['cliente/registro'] = 'error_404';
+//$route['cliente/inicio'] = 'administracion';
+//$route[''] = '';
+//$route[''] = '';
+//$route[''] = '';
+//$route[''] = '';
+//$route[''] = '';
+//$route[''] = '';
+//$route[''] = '';
+//$route[''] = '';
