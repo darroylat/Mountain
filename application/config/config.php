@@ -46,7 +46,7 @@ switch($nombreServerActual)
             $config['base_url']    = "http://192.168.1.110/mountain/";
             break;
     default:
-            $config['base_url']    = "http://192.168.1.59/mountain/";
+            $config['base_url']    = $_SERVER['SERVER_NAME'];
             break;
 }
 
