@@ -66,17 +66,24 @@ class Cliente extends CI_Controller{
   }
 	public function ingresar(){
 
-		  $this->load->helper('url');
-			
+		$this->load->helper('url');
+
 		$usuario = $this->input->post("user");
 		$contrasena = $this->input->post("pass");
 		$this->load->model('Cliente_model');
 		$query = $this->Cliente_model->select_cuenta_usuario($usuario, $contrasena);
 		if($query != null){
-			echo "encontro usuario";
+			$cliente_data = array(
+               'id' => $query['idcliente'],
+               'nombre' => $query['nombrecliente'],
+							 'usuario' => $query['usuariocliente'],
+               'logueado' => TRUE
+            );
+			$this->session->set_userdata($cliente_data);
+			//echo "encontro usuario";
 			redirect('/administracion/');
 		}else{
-			echo "no encontrado";
+			redirect('/principal/ingresa');
 		}
 
 	}
@@ -97,5 +104,11 @@ class Cliente extends CI_Controller{
 				}
 			}
 		}
+	}
+	public function cerrar_sesion(){
+		//echo base_url();
+		$this->load->helper('url');
+		$this->session->sess_destroy();
+		redirect('/principal', 'refresh');
 	}
 }

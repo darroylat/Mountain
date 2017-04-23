@@ -15,9 +15,19 @@
 </head>
 <body>
     <div id="wrapper">
-      <?php $this->load->view($encabezado, $title); ?>
+      <?php $this->load->view($encabezado); ?>
       <?php $this->load->view($menu); ?>
-      <?php $this->load->view($contenido); ?>
+      <?php if (isset($datos)) {
+        $this->load->view($contenido, $datos);
+      }else{
+        $this->load->view($contenido);
+      }
+       ?>
+      <?php
+        if (isset($modal_contrasena)) {
+          $this->load->view($modal_contrasena);
+        }
+      ?>
     </div>
    <!-- /. WRAPPER  -->
   <!-- JS Scripts-->
@@ -33,5 +43,6 @@
   <!-- Morris Chart Js -->
   <script src="<?php echo base_url(); ?>assets/mountain/js/morris/raphael-2.1.0.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/mountain/js/morris/morris.js"></script>
+  <script src="<?php echo base_url(); ?>assets/mountain/js/modal.js"></script>
 </body>
 </html>
