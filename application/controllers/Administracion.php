@@ -70,6 +70,7 @@ class Administracion extends CI_Controller{
 		$this->load->view('template_mountain',$data);
 	}
 	public function evento($parametro){
+
 		if ($parametro == 'nuevo') {
 			$data['contenido'] = 'mountain/contenido/evento_nuevo';
 		}elseif($parametro == 'ver'){
@@ -86,6 +87,7 @@ class Administracion extends CI_Controller{
 		$this->load->view('template_mountain',$data);
 	}
 	public function sendero($parametro){
+
 		if ($parametro == 'nuevo') {
 			$data['contenido'] = 'mountain/contenido/sendero_nuevo';
 		}else{
@@ -99,6 +101,7 @@ class Administracion extends CI_Controller{
 		$this->load->view('template_mountain',$data);
 	}
 	public function equipamiento($parametro){
+
 		if ($parametro == 'nuevo') {
 			$data['contenido'] = 'mountain/contenido/equipamiento_nuevo';
 		}else{
@@ -113,6 +116,7 @@ class Administracion extends CI_Controller{
 	}
 
 	public function cliente(){
+
 		$this->load->model('Admin_model');
 		$id = $this->session->userdata('id');
 		$query = $this->Admin_model->get_where_one($id);
@@ -127,6 +131,15 @@ class Administracion extends CI_Controller{
 		$cliente['recibir'] = $query['recibircliente'];
 
 		$data['datos'] = $cliente;
+
+		$this->load->view('template_mountain',$data);
+	}
+
+	public function bienvenido(){
+
+		$data['encabezado'] = 'mountain/encabezado';
+		$data['menu'] = 'mountain/menu';
+		$data['contenido'] = 'mountain/contenido/bienvenido';
 
 		$this->load->view('template_mountain',$data);
 	}

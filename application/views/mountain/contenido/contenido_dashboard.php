@@ -1,6 +1,16 @@
 <div id="page-wrapper">
             <div id="page-inner">
-
+              <div class="row">
+                <div class="col-md-12">
+                    <div class="jumbotron">
+                        <h1>Bienvenido</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing.</p>
+                        <p>
+                            <a href="<?php echo base_url(); ?>administracion/bienvenido" class="btn btn-primary btn-lg" role="button">Leer más</a>
+                        </p>
+                    </div>
+                </div>
+              </div>
 
                 <div class="row">
                     <div class="col-md-12">
