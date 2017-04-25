@@ -77,6 +77,7 @@ class Cliente extends CI_Controller{
                'id' => $query['idcliente'],
                'nombre' => $query['nombrecliente'],
 							 'usuario' => $query['usuariocliente'],
+							 'basedatos' => $query['datoscliente'],
                'logueado' => TRUE
             );
 			$this->session->set_userdata($cliente_data);
