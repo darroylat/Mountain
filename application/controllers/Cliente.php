@@ -36,7 +36,7 @@ class Cliente extends CI_Controller{
 */
     if (isset($id)) {
       //$this->load->model('Admin_model','',$config);
-			$this->load->model('Admin_model');
+      $this->load->model('Admin_model');
       $query = $this->Admin_model->get_where_one($id);
 
       if ($query['idcliente'] == $id && $query['usuariocliente'] == 'mountain') {
@@ -66,20 +66,20 @@ class Cliente extends CI_Controller{
   }
 	public function ingresar(){
 
-		$this->load->helper('url');
+		//$this->load->helper('url');
 
 		$usuario = $this->input->post("user");
 		$contrasena = $this->input->post("pass");
 		$this->load->model('Cliente_model');
 		$query = $this->Cliente_model->select_cuenta_usuario($usuario, $contrasena);
 		if($query != null){
-			$cliente_data = array(
-               'id' => $query['idcliente'],
-               'nombre' => $query['nombrecliente'],
-							 'usuario' => $query['usuariocliente'],
-							 'basedatos' => $query['datoscliente'],
+				$cliente_data = array(
+               'id' => $query['IDCLIENTE'],
+               'nombre' => $query['NOMBRECLIENTE'],
+							 'usuario' => $query['USUARIOCLIENTE'],
+							 'basedatos' => $query['DATOSCLIENTE'],
                'logueado' => TRUE
-            );
+        );
 			$this->session->set_userdata($cliente_data);
 			//echo "encontro usuario";
 			redirect('/administracion/');
