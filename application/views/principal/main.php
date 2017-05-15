@@ -3,11 +3,11 @@
 
 					<section class="box special">
 						<header class="major">
-							<h2>Introducing the ultimate mobile app
+							<h2>Tienes una empresa de turismo aventura
 							<br />
-							for doing stuff with your phone</h2>
-							<p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc ornare<br />
-							adipiscing nunc adipiscing. Condimentum turpis massa.</p>
+							enfocada al trekking?</h2>
+							<p>Ponte en contacto con nosotros y accede a una plataforma de administración para empresas de trekking<br />
+							evita realizar tareas repetitivas y que te hacen invertir mucho tiempo.</p>
 						</header>
 						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
 					</section>

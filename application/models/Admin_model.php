@@ -24,7 +24,7 @@ class Admin_model extends CI_Model {
                 $this->db->insert('entries', $this);
         }
         public function select_cuenta_usuario($usuario){
-                $this->db->get_where_one('cliente', array('usuariocliente' => $usuario ));
+                $this->db->get_where_one('CLIENTE', array('USUARIOCLIENTE' => $usuario ));
         }
         public function update_entry($nombre, $usuario, $pass, $mail, $id)
         {
@@ -32,15 +32,20 @@ class Admin_model extends CI_Model {
                 $data['usuariocliente'] = $usuario;
                 $data['passcliente']    = $pass;
                 $data['mailcliente']    = $mail;
-                $data['datoscliente']   = 'mountain_'.$usuario;
+                $data['datoscliente']   = 'MOUNTAIN_'.$usuario;
 
-                $query = $this->db->update('cliente', $data, array('idcliente' => $id));
+                $query = $this->db->update('CLIENTE', $data, array('IDCLIENTE' => $id));
                 return $query;
         }
         //Funcionando
         public function get_where_one($id){
-            $query = $this->db->get_where('cliente',array('idcliente' => $id));
+            $query = $this->db->get_where('CLIENTE',array('IDCLIENTE' => $id));
+            //$query = $this->db->where();
             return $query->row_array();
+        }
+
+        public function get_user($usuario){
+          $query = $this->db->get_where('CLIENTE');
         }
 
 }

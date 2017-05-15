@@ -39,7 +39,7 @@ class Cliente extends CI_Controller{
       $this->load->model('Admin_model');
       $query = $this->Admin_model->get_where_one($id);
 
-      if ($query['idcliente'] == $id && $query['usuariocliente'] == 'mountain') {
+      if ($query['IDCLIENTE'] == $id && $query['USUARIOCLIENTE'] == 'mountain' && $query['MAILCLIENTE'] == 'mountain') {
 
           $data['header'] = 'principal/header_oscuro';
           $data['main'] = 'principal/cliente/registro';
@@ -96,9 +96,12 @@ class Cliente extends CI_Controller{
 		$correo = $this->input->post("mail");
 		$id = $this->input->post("id");
 
+		$this->load->model('Admin_model');
+		$buscando = $this->Admin_model->get_user($usuario);
+
 		if (isset($nombre) && isset($usuario) && isset($contrasena) && isset($recontrasena) && isset($correo)) {
 			if ($contrasena == $recontrasena) {
-				$this->load->model('Admin_model');
+
 	      $query = $this->Admin_model->update_entry($nombre, $usuario, $contrasena, $correo, $id);
 				if ($query) {
 					//TODO ir al panel de control del cliente
