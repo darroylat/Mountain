@@ -96,13 +96,13 @@ class Cliente extends CI_Controller{
 		$correo = $this->input->post("mail");
 		$id = $this->input->post("id");
 
-		$this->load->model('Admin_model');
-		$buscando = $this->Admin_model->get_user($usuario);
+		$this->load->model('Cliente_model');
+
 
 		if (isset($nombre) && isset($usuario) && isset($contrasena) && isset($recontrasena) && isset($correo)) {
 			if ($contrasena == $recontrasena) {
 
-	      $query = $this->Admin_model->update_entry($nombre, $usuario, $contrasena, $correo, $id);
+	      $query = $this->Cliente_model->update_cliente_registro($nombre, $usuario, $contrasena, $correo, $id);
 				if ($query) {
 					//TODO ir al panel de control del cliente
 				}

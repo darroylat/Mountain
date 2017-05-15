@@ -40,7 +40,6 @@ class Admin_model extends CI_Model {
         //Funcionando
         public function get_where_one($id){
             $query = $this->db->get_where('CLIENTE',array('IDCLIENTE' => $id));
-            //$query = $this->db->where();
             return $query->row_array();
         }
 
