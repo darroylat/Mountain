@@ -65,12 +65,11 @@ class Cliente extends CI_Controller{
 
   }
 	public function ingresar(){
-
-		//$this->load->helper('url');
-
 		$usuario = $this->input->post("user");
 		$contrasena = $this->input->post("pass");
+
 		$this->load->model('Cliente_model');
+
 		$query = $this->Cliente_model->select_cuenta_usuario($usuario, $contrasena);
 		if($query != null){
 				$cliente_data = array(
@@ -97,15 +96,37 @@ class Cliente extends CI_Controller{
 		$id = $this->input->post("id");
 
 		$this->load->model('Cliente_model');
+		$buscandoUsuario = $this->Cliente_model->buscando_usuario($usuario);
 
+		if ($buscandoUsuario['USUARIOCLIENTE'] == $usuario) {
+			$this->registro($id);
+			//TODO enviar datos devualta para que el cliente lo corrija
+		}else{
+			if (isset($nombre) && isset($usuario) && isset($contrasena) && isset($recontrasena) && isset($correo)) {
+				if ($contrasena == $recontrasena) {
+		      $query = $this->Cliente_model->update_cliente_registro($nombre, $usuario, $contrasena, $correo, $id);
+					if ($query != null) {
+						//TODO ir al panel de control del cliente
+						echo 'update exitoso';
 
-		if (isset($nombre) && isset($usuario) && isset($contrasena) && isset($recontrasena) && isset($correo)) {
-			if ($contrasena == $recontrasena) {
+						$cliente_data = array(
+		               'id' => $query['IDCLIENTE'],
+		               'nombre' => $query['NOMBRECLIENTE'],
+									 'usuario' => $query['USUARIOCLIENTE'],
+									 'basedatos' => $query['DATOSCLIENTE'],
+		               'logueado' => TRUE
+		        );
+						$this->session->set_userdata($cliente_data);
 
-	      $query = $this->Cliente_model->update_cliente_registro($nombre, $usuario, $contrasena, $correo, $id);
-				if ($query) {
-					//TODO ir al panel de control del cliente
+						redirect('/administracion/');
+					}else{
+						$this->registro($id);
+					}
+				}else{
+					//TODO contrasena no coincide
 				}
+			}else{
+				//TODO faltan datos de entrada
 			}
 		}
 	}

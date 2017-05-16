@@ -32,7 +32,7 @@ class Admin_model extends CI_Model {
                 $data['usuariocliente'] = $usuario;
                 $data['passcliente']    = $pass;
                 $data['mailcliente']    = $mail;
-                $data['datoscliente']   = 'MOUNTAIN_'.$usuario;
+                $data['datoscliente']   = 'MOUNTAIN_'.strtoupper($usuario);
 
                 $query = $this->db->update('CLIENTE', $data, array('IDCLIENTE' => $id));
                 return $query;
@@ -43,8 +43,6 @@ class Admin_model extends CI_Model {
             return $query->row_array();
         }
 
-        public function get_user($usuario){
-          $query = $this->db->get_where('CLIENTE');
-        }
+
 
 }

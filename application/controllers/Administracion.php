@@ -66,7 +66,6 @@ class Administracion extends CI_Controller{
 		$data['menu'] = 'mountain/menu';
     $data['title'] = 'Mountain';
 
-		$this->load->helper('url');
 		$this->load->view('template_mountain',$data);
 	}
 	public function evento($parametro){
@@ -83,7 +82,6 @@ class Administracion extends CI_Controller{
 		$data['menu'] = 'mountain/menu';
     $data['title'] = 'Mountain';
 
-		$this->load->helper('url');
 		$this->load->view('template_mountain',$data);
 	}
 	public function sendero($parametro){
@@ -97,7 +95,6 @@ class Administracion extends CI_Controller{
 		$data['menu'] = 'mountain/menu';
     $data['title'] = 'Mountain';
 
-		$this->load->helper('url');
 		$this->load->view('template_mountain',$data);
 	}
 	public function equipamiento($parametro){
@@ -111,7 +108,6 @@ class Administracion extends CI_Controller{
 		$data['menu'] = 'mountain/menu';
     $data['title'] = 'Mountain';
 
-		$this->load->helper('url');
 		$this->load->view('template_mountain',$data);
 	}
 
@@ -140,6 +136,19 @@ class Administracion extends CI_Controller{
 		$data['encabezado'] = 'mountain/encabezado';
 		$data['menu'] = 'mountain/menu';
 		$data['contenido'] = 'mountain/contenido/bienvenido';
+
+		$this->load->view('template_mountain',$data);
+	}
+
+	public function pack($parametro){
+		if ($parametro == 'nuevo') {
+			$data['contenido'] = 'mountain/contenido/equipamiento_nuevo';
+		}else{
+			$data['contenido'] = 'mountain/contenido/equipamiento_nuevo';
+		}
+		$data['encabezado'] = 'mountain/encabezado';
+		$data['menu'] = 'mountain/menu';
+    $data['title'] = 'Mountain';
 
 		$this->load->view('template_mountain',$data);
 	}

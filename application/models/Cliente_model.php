@@ -25,14 +25,24 @@ class Cliente_model extends CI_Model {
 
         public function update_cliente_registro($nombre, $usuario, $pass, $mail, $id)
         {
-                $data['nombrecliente']  = $nombre;
-                $data['usuariocliente'] = $usuario;
-                $data['passcliente']    = $pass;
-                $data['mailcliente']    = $mail;
-                $data['datoscliente']   = 'MOUNTAIN_'.$usuario;
+          $data['NOMBRECLIENTE']  = $nombre;
+          $data['USUARIOCLIENTE'] = $usuario;
+          $data['PASSCLIENTE']    = $pass;
+          $data['MAILCLIENTE']    = $mail;
+          $data['DATOSCLIENTE']   = 'MOUNTAIN_'.strtoupper($usuario);
 
-                $query = $this->db->update('CLIENTE', $data, array('IDCLIENTE' => $id));
-                return $query;
+          $query = $this->db->update('CLIENTE', $data, array('IDCLIENTE' => $id));
+          if ($query) {
+            $busqueda = $this->db->get_where('CLIENTE', array('IDCLIENTE' => $id));
+            return $busqueda->row_array();
+          }else{
+            return null;
+          }
+        }
+
+        public function buscando_usuario($usuario){
+          $query = $this->db->get_where('CLIENTE', array('USUARIOCLIENTE' => $usuario));
+          return $query->row_array();
         }
 
 }

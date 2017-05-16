@@ -35,13 +35,13 @@
                     </li>
 
                     <li>
-                        <a href="#"><i class="fa fa-sitemap"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-sitemap"></i>PACK<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="#">Second Level Link</a>
+                                <a href="<?php echo base_url(); ?>administracion/pack/nuevo">Crear Pack</a>
                             </li>
                             <li>
-                                <a href="#">Second Level Link</a>
+                                <a href="<?php echo base_url(); ?>administracion/pack/ver">Ver Packs</a>
                             </li>
                             <li>
                                 <a href="#">Second Level Link<span class="fa arrow"></span></a>
