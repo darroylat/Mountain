@@ -142,9 +142,9 @@ class Administracion extends CI_Controller{
 
 	public function pack($parametro){
 		if ($parametro == 'nuevo') {
-			$data['contenido'] = 'mountain/contenido/equipamiento_nuevo';
+			$data['contenido'] = 'mountain/contenido/pack_nuevo';
 		}else{
-			$data['contenido'] = 'mountain/contenido/equipamiento_nuevo';
+			$data['contenido'] = 'mountain/contenido/pack_ver';
 		}
 		$data['encabezado'] = 'mountain/encabezado';
 		$data['menu'] = 'mountain/menu';
