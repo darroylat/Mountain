@@ -6,7 +6,7 @@
 						<p>Tell us what you think about our little operation.</p>
 					</header>
 					<div class="box">
-						<form method="post" action="../cliente/ingresar">
+						<form method="post" action="<?php echo base_url(); ?>cliente/ingresar">
 							<div class="row uniform 50%">
 								<div class="12u">
 									<input type="text" name="user" id="user" value="" placeholder="Usuario" />

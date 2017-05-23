@@ -69,8 +69,26 @@ class Administracion extends CI_Controller{
 		$this->load->view('template_mountain',$data);
 	}
 	public function evento($parametro){
+		$config['hostname'] = 'localhost';
+		$config['username'] = 'root';
+		$config['password'] = '';
+		$config['database'] = $this->session->userdata('basedatos');
+		$config['dbdriver'] = 'mysqli';
+		$config['dbprefix'] = '';
+		$config['pconnect'] = FALSE;
+		$config['db_debug'] = TRUE;
 
 		if ($parametro == 'nuevo') {
+			$this->load->model('Equipo_model','',$config);
+			$this->load->model('Ubicacion_model','',$config);
+			$equipo = $this->Equipo_model->all_equipo();
+			$ubicacion = $this->Ubicacion_model->all_ubicacion();
+			if ($equipo != FALSE) {
+				$consultas['equipo'] = $equipo;
+			}
+			if ($ubicacion != FALSE) {
+				$consultas['ubicacion'] = $ubicacion;
+			}
 			$data['contenido'] = 'mountain/contenido/evento_nuevo';
 		}elseif($parametro == 'ver'){
 			$data['contenido'] = 'mountain/contenido/evento_ver';
@@ -78,6 +96,8 @@ class Administracion extends CI_Controller{
 			//TODO proximo 404 para la pagina de administracion
 			//$data['contenido'] = 'mountain/contenido/evento_ver';
 		}
+		$data['datos'] = $consultas;
+
 		$data['encabezado'] = 'mountain/encabezado';
 		$data['menu'] = 'mountain/menu';
     $data['title'] = 'Mountain';
@@ -85,8 +105,27 @@ class Administracion extends CI_Controller{
 		$this->load->view('template_mountain',$data);
 	}
 	public function sendero($parametro){
+		$config['hostname'] = 'localhost';
+		$config['username'] = 'root';
+		$config['password'] = '';
+		$config['database'] = $this->session->userdata('basedatos');
+		$config['dbdriver'] = 'mysqli';
+		$config['dbprefix'] = '';
+		$config['pconnect'] = FALSE;
+		$config['db_debug'] = TRUE;
 
 		if ($parametro == 'nuevo') {
+			$this->load->model('Ubicacion_model','',$config);
+			$this->load->model('Sendero_model','',$config);
+			$ubicacion = $this->Ubicacion_model->all_ubicacion();
+			$nivel = $this->Sendero_model->all_dificultad();
+			if ($ubicacion != FALSE) {
+				$consultas['ubicacion'] = $ubicacion;
+			}
+			if ($nivel != FALSE) {
+				$consultas['nivel'] = $nivel;
+			}
+			$data['datos'] = $consultas;
 			$data['contenido'] = 'mountain/contenido/sendero_nuevo';
 		}else{
 			# code...

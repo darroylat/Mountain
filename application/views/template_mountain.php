@@ -44,5 +44,6 @@
   <script src="<?php echo base_url(); ?>assets/mountain/js/morris/raphael-2.1.0.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/mountain/js/morris/morris.js"></script>
   <script src="<?php echo base_url(); ?>assets/mountain/js/modal.js"></script>
+  <script src="<?php echo base_url(); ?>assets/mountain/default.js"></script>
 </body>
 </html>
