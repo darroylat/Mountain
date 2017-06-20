@@ -1,36 +1,121 @@
+<script>
+	function base_url() {
+    var pathparts = location.pathname.split('/');
+    if (location.host == 'localhost') {
+        var url = location.origin+'/'+pathparts[1].trim('/')+'/'; // http://localhost/myproject/
+    }else{
+        var url = location.origin; // http://stackoverflow.com
+    }
+    return url;
+}
+
+
+
+(function ($) {
+    "use strict";
+    var mainApp = {
+
+        initFunction: function () {
+            /*MENU 
+            ------------------------------------*/
+            $('#main-menu').metisMenu();
+			
+            $(window).bind("load resize", function () {
+                if ($(this).width() < 768) {
+                    $('div.sidebar-collapse').addClass('collapse')
+                } else {
+                    $('div.sidebar-collapse').removeClass('collapse')
+                }
+            });
+
+            /* MORRIS BAR CHART
+			-----------------------------------------*/
+		
+            Morris.Bar({
+                element: 'morris-bar-chart',
+                data: [
+                
+                <?php foreach($cantidadcnc as $row){ ?>
+		    	{
+                    y: '<?=$row->NOMBRE;?>',
+                    a: <?= $row->PAGADO;?>,
+                    b: <?=$row->INSCRITOS;?>
+                },
+                
+				<?php } ?>
+
+                ],
+                xkey: 'y',
+                ykeys: ['a', 'b'],
+                labels: ['Total Pagados', 'Total inscritos'],
+                hideHover: 'auto',
+                resize: true
+            });
+            
+            $.ajax({
+				  type: 'POST',
+				  url: base_url()+'Daniel/vergrafico',
+				  data: '',
+				  success: function(data) {
+					alert(data.body);
+				
+				  }
+			});
+            
+
+            /* MORRIS DONUT CHART
+			----------------------------------------*/
+            Morris.Donut({
+                element: 'morris-donut-chart',
+                data: [
+                
+                <?php foreach($cantidadsxuser as $row2){ ?>
+                    {
+                    label: "Total usuarios",
+                    value: <?=$row2->TOTAL;?>
+	                }, {
+	                    label: "Total hombres",
+	                    value: <?=$row2->MASCULINO;?>
+	                }, {
+	                    label: "Total mujeres",
+	                    value: <?= $row2->FEMENINO;?>
+	                }
+                
+				<?php } ?>
+				
+                ],
+                resize: true
+            });
+     
+        },
+
+        initialization: function () {
+            mainApp.initFunction();
+
+        }
+
+    }
+    // Initializing ///
+
+    $(document).ready(function () {
+        mainApp.initFunction();
+    });
+
+}(jQuery));
+	
+</script>
 <div id="page-wrapper">
             <div id="page-inner">
-              <div class="row">
-                <div class="col-md-12">
-                    <div class="jumbotron">
-                        <h1>Bienvenido</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing.</p>
-                        <p>
-                            <a href="<?php echo base_url(); ?>administracion/bienvenido" class="btn btn-primary btn-lg" role="button">Leer más</a>
-                        </p>
-                    </div>
-                </div>
-              </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="page-header">
-                            Dashboard <small>Summary of your App</small>
-                        </h1>
-                    </div>
-                </div>
-                <!-- /. ROW  -->
 
                 <div class="row">
                     <div class="col-md-3 col-sm-12 col-xs-12">
                         <div class="panel panel-primary text-center no-boder bg-color-green">
                             <div class="panel-body">
                                 <i class="fa fa-bar-chart-o fa-5x"></i>
-                                <h3>8,457</h3>
+                                <h3><?=$cantidadaeventos?></h3>
                             </div>
                             <div class="panel-footer back-footer-green">
-                                Daily Visits
-
+                               <a class="btn-success" href="<?php echo site_url('evento/ver_eventos'); ?>"> Eventos disponibles</a>
                             </div>
                         </div>
                     </div>
@@ -38,22 +123,10 @@
                         <div class="panel panel-primary text-center no-boder bg-color-blue">
                             <div class="panel-body">
                                 <i class="fa fa-shopping-cart fa-5x"></i>
-                                <h3>52,160 </h3>
+                                <h3><?=$cantidaddepositos?></h3>
                             </div>
                             <div class="panel-footer back-footer-blue">
-                                Sales
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-red">
-                            <div class="panel-body">
-                                <i class="fa fa fa-comments fa-5x"></i>
-                                <h3>15,823 </h3>
-                            </div>
-                            <div class="panel-footer back-footer-red">
-                                Comments
+                                Nuevos depositos
 
                             </div>
                         </div>
@@ -62,10 +135,10 @@
                         <div class="panel panel-primary text-center no-boder bg-color-brown">
                             <div class="panel-body">
                                 <i class="fa fa-users fa-5x"></i>
-                                <h3>36,752 </h3>
+                                <h3><?=$cantidadusuarios?></h3>
                             </div>
                             <div class="panel-footer back-footer-brown">
-                                No. of Visits
+                                <a class="btn-warning" href="<?php echo site_url('Usuario/ver_usuarios'); ?>">Usuarios Disponibles</a>
 
                             </div>
                         </div>
@@ -79,17 +152,19 @@
                     <div class="col-md-9 col-sm-12 col-xs-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Bar Chart Example
+                                Resumen de las 2 ultimas salidas de trekking
                             </div>
                             <div class="panel-body">
-                                <div id="morris-bar-chart"></div>
+                                <div id="morris-bar-chart">
+                                	
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-12 col-xs-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Donut Chart Example
+                                Resumen demografico de usuarios
                             </div>
                             <div class="panel-body">
                                 <div id="morris-donut-chart"></div>
@@ -104,105 +179,53 @@
                     <div class="col-md-4 col-sm-12 col-xs-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Tasks Panel
+                                Lista de salidas y pack
                             </div>
                             <div class="panel-body">
                                 <div class="list-group">
-
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">7 minutes ago</span>
-                                        <i class="fa fa-fw fa-comment"></i> Commented on a post
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">16 minutes ago</span>
-                                        <i class="fa fa-fw fa-truck"></i> Order 392 shipped
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">36 minutes ago</span>
-                                        <i class="fa fa-fw fa-globe"></i> Invoice 653 has paid
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">1 hour ago</span>
-                                        <i class="fa fa-fw fa-user"></i> A new user has been added
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">1.23 hour ago</span>
-                                        <i class="fa fa-fw fa-user"></i> A new user has added
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">yesterday</span>
-                                        <i class="fa fa-fw fa-globe"></i> Saved the world
-                                    </a>
-                                </div>
-                                <div class="text-right">
-                                    <a href="#">More Tasks <i class="fa fa-arrow-circle-right"></i></a>
+										<?php foreach ($listaservicios->result() as $servicios){?>
+                    					
+                    
+                							
+                                     <a href="#" class="list-group-item">
+                                        <i class="fa fa-fw fa-comment"></i> <?= $servicios->eventos; ?>
+                                    </a>       
+                    					<?php } ?>
                                 </div>
                             </div>
                         </div>
 
                     </div>
                     <div class="col-md-8 col-sm-12 col-xs-12">
-
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Responsive Table Example
+                                Lista de usuarios
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th>S No.</th>
-                                                <th>First Name</th>
-                                                <th>Last Name</th>
-                                                <th>User Name</th>
-                                                <th>Email ID.</th>
+                                                <th>NOMBRES </th>
+                                                <th>APELLIDOS</th>
+                                                <th>TELEFONOS</th>
+                                                <th>NIVEL</th>
+                                                <th>CORREO</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>John</td>
-                                                <td>Doe</td>
-                                                <td>John15482</td>
-                                                <td>name@site.com</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Kimsila</td>
-                                                <td>Marriye</td>
-                                                <td>Kim1425</td>
-                                                <td>name@site.com</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Rossye</td>
-                                                <td>Nermal</td>
-                                                <td>Rossy1245</td>
-                                                <td>name@site.com</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Richard</td>
-                                                <td>Orieal</td>
-                                                <td>Rich5685</td>
-                                                <td>name@site.com</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Jacob</td>
-                                                <td>Hielsar</td>
-                                                <td>Jac4587</td>
-                                                <td>name@site.com</td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>Wrapel</td>
-                                                <td>Dere</td>
-                                                <td>Wrap4585</td>
-                                                <td>name@site.com</td>
-                                            </tr>
-
+                                    	<?php foreach ($listausuarios->result() as $usuarios){?>
+                    					<tr>
+                    
+                							<td><?= $usuarios->NOMBRE; ?></td>
+                                            <td><?= $usuarios->APELLIDO; ?></td>
+                                            <td><?= $usuarios->TELEFONO; ?></td>
+                                            <td><?= $usuarios->NIVEL; ?></td>
+                                            <td><?= $usuarios->EMAIL; ?></td>
+                                        </tr>
+                    					<?php } ?>
+                                            
+                                                
                                         </tbody>
                                     </table>
                                 </div>

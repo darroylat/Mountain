@@ -16,97 +16,61 @@
                           </div>
                           <div class="panel-body">
                               <div class="row">
-                                <form role="form">
+                                <form role="form" method="post" action="<?php echo base_url(); ?>pack/crear">
                                     <div class="col-lg-6">
                                       <!--Nombre del evento a crear -->
                                       <div class="form-group">
                                           <label>Nombre del Pack</label>
-                                          <input class="form-control" placeholder="Ingrese el nombre de su evento">
+                                          <input id="nombre" name="nombre"class="form-control" placeholder="Ingrese el nombre de su evento">
                                       </div>
                                       <!--Descripcion del evento -->
                                       <div class="form-group">
                                           <label>Descripcion del Pack</label>
-                                          <textarea class="form-control" rows="3" placeholder="Ingrese la descripción de su evento"></textarea>
-                                      </div>
-                                      <!--Punto de encuentro -->
-                                      <div class="form-group">
-                                          <label>Punto de encuentro</label>
-                                          <input class="form-control" placeholder="Ingrese el punto de encuentro">
-                                      </div>
-                                      <!--Select lugar para crear un evento -->
-                                      <div class="form-group">
-                                          <label>Donde iremos.</label>
-                                          <select class="form-control">
-                                              <option>Parque Metropolitano</option>
-                                          </select>
-                                      </div>
-                                      <!--Select sendero a elegir para el lugar del evento -->
-                                      <div class="form-group">
-                                          <label>Cual sera el sendero a recorrer.</label>
-                                          <select class="form-control">
-                                              <option>Seleccione un Sendero</option>
-                                              <option>Sendero Atacameño</option>
-                                          </select>
+                                          <textarea id="descripcion" name="descripcion" class="form-control" rows="3" placeholder="Ingrese la descripción de su evento"></textarea>
                                       </div>
                                       <!--Imagen a utilizar -->
                                       <div class="form-group">
                                         <label>Imagen a utilizar</label>
                                         <p>Imagen predeterminada</p>
-                                        <img src="assets/img/imagenp.gif" width="360"/>
+                                        <img src="<?php echo base_url(); ?>images/sin_imagen.jpg" width="360"/>
                                         <label>Seleccione una imagen si desea utilizar una propia</label>
-                                        <input type="file">
+                                        <input id="foto" name="foto" type="file">
                                       </div>
                                     </div>
                                     <div class="col-lg-6">
                                       <!--Seleccion del equipamiento para este evento -->
                                       <div class="form-group">
-                                          <label>Equipamientos</label>
-                                          <div class="checkbox">
-                                              <label>
-                                                  <input type="checkbox" value="">Protector solar (factor 30 o mas)
-                                              </label>
+                                      	<div class="form-group">
+                                              <label>Valor</label>
+                                              <input id="valor" name="valor" class="form-control" placeholder="0000">
                                           </div>
-                                          <div class="checkbox">
-                                              <label>
-                                                  <input type="checkbox" value="">Zapatos de Excrursión (suales no lisas)
-                                              </label>
-                                          </div>
-                                          <div class="checkbox">
-                                              <label>
-                                                  <input type="checkbox" value="">Lentes de sol
-                                              </label>
-                                          </div>
-                                          <div class="checkbox">
-                                              <label>
-                                                  <input type="checkbox" value="">Cortavientos (en épocas de frio)
-                                              </label>
-                                          </div>
-                                          <div class="checkbox">
-                                              <label>
-                                                  <input type="checkbox" value="">Gorro
-                                              </label>
-                                          </div>
-                                          <!--Fecha del evento -->
-                                          <div class="form-group">
-                                              <label>Fecha del evento</label>
-                                              <input class="form-control" placeholder="Formato DD/MM/YYYY">
-                                          </div>
-                                          <!--Hora del evento -->
-                                          <div class="form-group">
-                                              <label>Hora del evento</label>
-                                              <input class="form-control" placeholder="Formato 00:00:00">
+                                      	<div class="form-group">
+                                              <label>Fecha Inicio del Pack</label>
+                                              <input id="fechainicio" name="fechainicio" class="form-control" placeholder="Formato YYY/MM/DDD">
                                           </div>
                                           <!--Fecha y hora de termino del Evento -->
-                                          <div class="form-group">
-                                              <label>Fecha y Hora de termino del evento</label>
-                                              <input class="form-control" placeholder="Formato DD/MM/YYYY 00:00:00">
-                                          </div>
+                                          <label>Donde iremos</label>
+                                          <?php foreach ($ubicacion->result() as $row){?>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input id="lg<?= $row->IDUBICACION; ?>" type="checkbox" value="<?= $row->IDUBICACION; ?>"  onchange="cargaSenderodepack(lg<?= $row->IDUBICACION; ?>);"> <?= $row->NOMBRE; ?>
+                                                </label>
+                                                <div class="form-group">
+                                                	<select id="slg<?= $row->IDUBICACION; ?>" name="<?= $row->IDUBICACION; ?>" class="form-control" style="display:none;">
+		                                              <option>Seleccione un Sendero</option>
+		                                              <option>Sendero Atacameño</option>
+		                                          </select>
+	                                    		</div>
+                                            </div>
+                                          <?php } ?>
+
+                                          <!--Fecha del evento -->
                                       </div>
                                     </div>
                                     <div class="col-lg-12">
                                       <!--Botones para guardar el evento o volver a la pagina de inicio -->
-                                      <a href="#" class="btn btn-default">Guardar</a>
-                                      <a href="#" class="btn btn-default">Cancelar</a>
+                                      <input type="submit" class="btn btn-success" value="Guardar"/>
+                                      <!--a href="#" class="btn btn-default">Cancelar</a-->
                                     </div>
                                 </form>
                               </div>

@@ -12,18 +12,43 @@ class Administracion extends CI_Controller{
 
 	public function index()
 	{
+		$config['hostname'] = 'localhost';
+		$config['username'] = 'root';
+		$config['password'] = '';
+		$config['database'] = $this->session->userdata('basedatos');
+		$config['dbdriver'] = 'mysqli';
+		$config['dbprefix'] = '';
+		$config['pconnect'] = FALSE;
+		$config['db_debug'] = TRUE;
+		$this->load->model('Admin_model','',$config);
+		
+		$cantidadeventos=$this->Admin_model->contadoreventos();/*Ejecujatamos la query*/
+		$cantidadusuarios=$this->Admin_model->contadorusuarios();/*Ejecujatamos la query*/
+		$cantidaddeposito=$this->Admin_model->contadordepositos();/*Ejecujatamos la query*/
+		$cantidadcnc=$this->Admin_model->comprobantesnocomprantes();/*revisar como cargar en grafico*/
+		$sexousuarios=$this->Admin_model->sexousuarios();/*revisar como cargar en grafico*/
+		$listausuarios=$this->Admin_model->listausuarios();/*Ejecujatamos la query*/
+		$listaservicios=$this->Admin_model->listaservicios();/*Ejecujatamos la query*/
 		//$data['contenido'] = 'ruta a la vista dinamica';
+		
+		$data["cantidadaeventos"]=$cantidadeventos["contadoreventos"];
+		$data["cantidadusuarios"]=$cantidadusuarios["contadorusuario"];
+		$data["cantidaddepositos"]=$cantidaddeposito["CONTADORDEPOSITOS"];
+		$data["cantidadcnc"]=$cantidadcnc;
+		$data["cantidadsxuser"]=$sexousuarios;
+		$data["listausuarios"]=$listausuarios;
+		$data["listaservicios"]=$listaservicios;
 		$data['encabezado'] = 'mountain/encabezado';
 		$data['menu'] = 'mountain/menu';
 		$data['contenido'] = 'mountain/contenido/contenido_dashboard';
-    $data['title'] = 'Mountain';
+    	$data['title'] = 'Mountain';
     //$data['title'] = $title['title'] = 'Mountain';
 
 		//$this->load->view('header');
-    $this->load->helper('url');
-		$this->load->view('template_mountain',$data);
-		//$this->load->view('footer');
-	}
+	    	$this->load->helper('url');
+			$this->load->view('template_mountain',$data);
+			//$this->load->view('footer');
+		}
   public function empy_page()
 	{
 		//$data['contenido'] = 'ruta a la vista dinamica';
@@ -179,16 +204,5 @@ class Administracion extends CI_Controller{
 		$this->load->view('template_mountain',$data);
 	}
 
-	public function pack($parametro){
-		if ($parametro == 'nuevo') {
-			$data['contenido'] = 'mountain/contenido/pack_nuevo';
-		}else{
-			$data['contenido'] = 'mountain/contenido/pack_ver';
-		}
-		$data['encabezado'] = 'mountain/encabezado';
-		$data['menu'] = 'mountain/menu';
-    $data['title'] = 'Mountain';
 
-		$this->load->view('template_mountain',$data);
-	}
 }

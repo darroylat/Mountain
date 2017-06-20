@@ -84,6 +84,7 @@ class Cliente extends CI_Controller{
 			redirect('/administracion/');
 		}else{
 			redirect('/principal/ingresa');
+			
 		}
 
 	}

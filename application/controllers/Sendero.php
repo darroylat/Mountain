@@ -43,7 +43,20 @@ class Sendero extends CI_Controller{
 		$config['dbprefix'] = '';
 		$config['pconnect'] = FALSE;
 		$config['db_debug'] = TRUE;
+		$this->load->model('Sendero_model','',$config);
 
     $id = $this->input->post("id");
+    $senderos = $this->Sendero_model->sendedorsdelugar($id);
+	    if(count($senderos)>0)
+	    {
+	    	$pro_select_box ='';
+	    	$pro_select_box .='<option value="0">Seleccionar Sendero</option>';
+	    	foreach($senderos as $sendero){
+	    		$pro_select_box .='<option value="'.$sendero->IDSENDERO.'">'.$sendero->NOMBRE.'</option>';
+	    	}
+	    	echo json_encode($pro_select_box);
+	    }
+    
+    
   }
 }

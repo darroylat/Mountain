@@ -6,7 +6,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index"><?=$this->session->userdata('usuario'); ?></a>
+                <a class="navbar-brand" href="<?php echo site_url('administracion'); ?>"><?=$this->session->userdata('usuario'); ?></a>
             </div>
 
             <ul class="nav navbar-top-links navbar-right">

@@ -1,102 +1,98 @@
 <div id="page-wrapper" >
-            <div id="page-inner">
-			           <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="page-header">
-                            Eventos creados <small>Visualiza los eventos generados.</small>
-                        </h1>
+    <div class="row">
+    		<h1>Salidas de Trekking</h1>
+    	</div>
+    <div id="page-inner">
+    <div class="row">
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder bg-color-green">
+                            <div class="panel-body">
+                                <i class="fa fa-bar-chart-o fa-5x"></i>
+                                <h3><?=$cntactivos?></h3>
+                            </div>
+                            <div class="panel-footer back-footer-green">
+                                Salidas Activas
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-lg-12">
-                      <div class="panel panel-default">
-                          <div class="panel-heading">
-                              Tabla de Eventos
-                          </div>
-                          <div class="panel-body">
-                              <div class="row">
-                                <div class="col-lg-12">
-                                  <div class="table-responsive pre-scrollable">
-                                <table class="table table-hover table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Nombre</th>
-                                            <th>Descripción</th>
-                                            <th>Fecha</th>
-                                            <th>Hora</th>
-                                            <th>Punto de Encuentro</th>
-                                            <th>Fecha Cierre</th>
-                                            <th>Ubicación</th>
-                                            <th>Sendero</th>
-                                            <th>Nivel</th>
-                                            <th>Acciones</th>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder bg-color-red">
+                            <div class="panel-body">
+                                <i class="fa fa-bar-chart-o fa-5x"></i>
+                                <h3><?=$cntcerradas?></h3>
+                            </div>
+                            <div class="panel-footer back-footer-red">
+                            	Salidas cerradas
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder bg-color-brown">
+                            <div class="panel-body">
+                                <i class="fa fa-bar-chart-o fa-5x"></i>
+                                <h3><?=$cntcanceladas?> </h3>
+                            </div>
+                            <div class="panel-footer back-footer-brown">
+                            	Salidas canceladas
+                            </div>
+                        </div>
+                    </div>
+        </div>
+	<div class="row">
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             Listado de salidas de trekking
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTables-example">
+                                    <thead class="btn-info">	
+                                    		<th>Acciones</th>
+                                    		<th>NOMBRE SALIDA</th>
+                                            <th>F. DE SALIDA</th>
+                                            <th>HORA</th>
+                                            <th>F. CIERRE INSCRIPCIONES</th>
+                                            <th>PTO. ENCUENTRO</th>
+                                            <th>VALOR</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Parque Metropolitano</td>
-                                            <td>Parque Metropolitano</td>
-                                            <td>Parque Metropolitano</td>
-                                            <td>Parque Metropolitano</td>
-                                            <td>Parque Metropolitano</td>
-                                            <td>Parque Metropolitano</td>
-                                            <td>Parque Metropolitano</td>
-                                            <td>Parque Metropolitano</td>
-                                            <td>Parque Metropolitano</td>glyphicon glyphicon-eye-open
-                                            <td>
-                                              <button type="button" name="button" class="btn btn-primary glyphicon glyphicon-eye-open"></button>
+                                        <?php foreach ($listaeventos as $salidas){?>
+                                        <?php 
+                                        $color=$salidas->ESTADO;
+                                        if ($color==1) { 
+                                        echo "<tr class='btn-danger'>";
+                                        } else { 
+                                        echo "<tr class='btn-success'>";
+                                        }
+                                        ?>                    					
+                    						<td>
+                                              <a href="<?php echo site_url('Evento/ver');?>/<?= $salidas->IDEVENTO; ?>"><button type="button" name="button" class="btn btn-primary glyphicon glyphicon-eye-open"></button></a>
                                               <button type="button" name="button" class="btn btn-success glyphicon glyphicon-edit"></button>
                                               <button type="button" name="button" class="btn btn-danger glyphicon glyphicon-trash"></button>
                                             </td>
+                                            <td><?= $salidas->NOMBRE; ?></td>
+                                            <td><?= $salidas->FECHA; ?></td>
+                                            <td><?= $salidas->HORA; ?></td>
+                                            <td><?= $salidas->FECHACIERRE; ?></td>
+                                            <td><?= $salidas->PUNTO; ?></td>
+                                            <td>$<?= $salidas->VALOR; ?></td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>
-                                              <button type="button" name="button" class="btn btn-primary glyphicon glyphicon-eye-open"></button>
-                                              <button type="button" name="button" class="btn btn-success glyphicon glyphicon-edit"></button>
-                                              <button type="button" name="button" class="btn btn-danger glyphicon glyphicon-trash"></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>
-                                              <button type="button" name="button" class="btn btn-primary glyphicon glyphicon-eye-open"></button>
-                                              <button type="button" name="button" class="btn btn-success glyphicon glyphicon-edit"></button>
-                                              <button type="button" name="button" class="btn btn-danger glyphicon glyphicon-trash"></button>
-                                            </td>
-                                        </tr>
+                    					<?php } ?>
                                     </tbody>
                                 </table>
                             </div>
-                                </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
+                            
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
                 </div>
+            </div>
+</div>
                  <!-- /. ROW  -->
-				 <footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p></footer>
-       </div>
-             <!-- /. PAGE INNER  -->
+<footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p></footer>
+</div>
 </div>

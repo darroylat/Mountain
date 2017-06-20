@@ -46,7 +46,7 @@
                                       <!--Select sendero a elegir para el lugar del evento -->
                                       <div class="form-group">
                                           <label>Cual sera el sendero a recorrer.</label>
-                                          <select id="sendero" name="sendero" class="form-control">
+                                          <select id="sendero" name="sendero" class="form-control" disabled="">
                                               <option value="0">Seleccione un Sendero</option>
                                           </select>
                                       </div>
@@ -73,7 +73,7 @@
                                           <!--Fecha del evento -->
                                           <div class="form-group">
                                               <label>Fecha del evento</label>
-                                              <input name="fechaevento" class="form-control" placeholder="Formato DD/MM/YYYY">
+                                              <input name="fechaevento" class="form-control" placeholder="Formato YYYY/MM/DD">
                                           </div>
                                           <!--Hora del evento -->
                                           <div class="form-group">
@@ -83,18 +83,18 @@
                                           <!--Fecha y hora de termino del Evento -->
                                           <div class="form-group">
                                               <label>Fecha y Hora de termino del evento</label>
-                                              <input name="fechatermino" class="form-control" placeholder="Formato DD/MM/YYYY 00:00:00">
+                                              <input name="fechatermino" class="form-control" placeholder="Formato YYYY/MM/DD 00:00:00">
                                           </div>
                                           <!--Valor del Evento -->
                                           <div class="form-group">
                                               <label>Valor del evento</label>
-                                              <input name="valor" class="form-control" placeholder="00000">
+                                              <input name="valor" class="form-control" placeholder="000">
                                           </div>
                                       </div>
                                     </div>
                                     <div class="col-lg-12">
                                       <!--Botones para guardar el evento o volver a la pagina de inicio -->
-                                      <input type="submit" class="btn btn-default" value="Guardar"/>
+                                      <input type="submit" class="btn btn-success" value="Guardar"/>
                                       <!--a href="#" class="btn btn-default">Cancelar</a-->
                                     </div>
                                 </form>

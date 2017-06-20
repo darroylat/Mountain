@@ -11,16 +11,59 @@ function base_url() {
 }
 
 function cargaSendero(){
+  
   var seleccion = $('#ubicacion').val();
-  alert(seleccion);
+  
+  if(seleccion =='0'){
+  	$('#sendero').prop('disabled',true);
+  }
+  else
+  {
+  	$('#sendero').prop('disabled',false);
+  }
   $.ajax({
   type: 'POST',
-  url: base_url()+'sendero/mostrar',
-  data: {id: seleccion
-  },
+  url:base_url()+'/Sendero/mostrar',
+  data: {id: seleccion},
+  dataType:'json',
   success: function(data) {
-
-
+	$('#sendero').html(data);
+	//alert('Ok');
   }
   });
+}
+function cargaSenderodepack(chekid){
+	var checkidselect=chekid.value;
+	if (document.getElementById("slg"+checkidselect).style.display == 'none')
+	{
+	div = document.getElementById('slg'+checkidselect);
+    div.style.display = '';
+	
+		var seleccion = $('#lg'+checkidselect).val();
+	  
+		  if(seleccion =='0'){
+		  	$('#slg'+checkidselect).prop('disabled',true);
+		  }
+		  else
+		  {
+		  	$('#slg'+checkidselect).prop('disabled',false);
+		  }
+		  $.ajax({
+		  type: 'POST',
+		  url:base_url()+'/Sendero/mostrar',
+		  data: {id: seleccion},
+		  dataType:'json',
+		  success: function(data) {
+			$('#slg'+checkidselect).html(data);
+			//alert('Ok');
+		  }
+		  });
+		
+	}
+	else {
+	div = document.getElementById('slg'+checkidselect);
+    div.style.display = 'none';
+		
+	}
+	//alert(checkidselect);
 }

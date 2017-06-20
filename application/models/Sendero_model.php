@@ -31,4 +31,11 @@ class Sendero_model extends CI_Model {
       return FALSE;
     }
   }
+  public function sendedorsdelugar($id){
+        	
+        	$query=$this->db->query('select * FROM SENDERO WHERE IDUBICACION='.$id);
+        	
+	    	return $query->result();
+        	
+        }
 }

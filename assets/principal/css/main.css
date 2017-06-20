@@ -3225,7 +3225,19 @@
 			color: rgba(255, 255, 255, 0.75) !important;
 		}
 
-		#cta :-ms-input-placeholder {
+		#cta :-ms-input-placeholder {SettingsSplitcssmountain/assets/principal/css/main.cssmaster +0,-0
+Save
+Save All
+Plugins
+Codegit
+Terminal
+Toogle Together
+Account
+Settings
+Password
+Help
+Logout
+Find:
 			color: rgba(255, 255, 255, 0.75) !important;
 		}
 
@@ -3246,7 +3258,7 @@
 		/* Banner */
 
 			#banner {
-				padding: 10em 0 18em 0;
+				padding: 4em 0 18em 0;
 			}
 
 	}

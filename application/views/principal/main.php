@@ -3,48 +3,17 @@
 
 					<section class="box special">
 						<header class="major">
-							<h2>Tienes una empresa de turismo aventura
-							<br />
-							enfocada al trekking?</h2>
-							<p>Ponte en contacto con nosotros y accede a una plataforma de administración para empresas de trekking<br />
-							evita realizar tareas repetitivas y que te hacen invertir mucho tiempo.</p>
+							<strong><h2>Potenciamos la Administración de tus Salidas de Trekking</h2></strong>
+							<p>Brindamos un servicio completo integrando creación de eventos, formularios de inscripción, registros de usuarios, envio de mail y reportes en tiempo real.
+							</p>
 						</header>
-						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
 					</section>
-
-					<section class="box special features">
-						<div class="features-row">
-							<section>
-								<span class="icon major fa-bolt accent2"></span>
-								<h3>Magna etiam</h3>
-								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-							</section>
-							<section>
-								<span class="icon major fa-area-chart accent3"></span>
-								<h3>Ipsum dolor</h3>
-								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-							</section>
-						</div>
-						<div class="features-row">
-							<section>
-								<span class="icon major fa-cloud accent4"></span>
-								<h3>Sed feugiat</h3>
-								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-							</section>
-							<section>
-								<span class="icon major fa-lock accent5"></span>
-								<h3>Enim phasellus</h3>
-								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-							</section>
-						</div>
-					</section>
-
 					<div class="row">
 						<div class="6u 12u(narrower)">
 
 							<section class="box special">
-								<span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
-								<h3>Sed lorem adipiscing</h3>
+								<span class="image featured"><img src="images/Database.png" alt="" /></span>
+								<h2>Maneja Base Datos</h2>
 								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
 								<ul class="actions">
 									<li><a href="#" class="button alt">Learn More</a></li>
@@ -55,8 +24,32 @@
 						<div class="6u 12u(narrower)">
 
 							<section class="box special">
-								<span class="image featured"><img src="images/pic03.jpg" alt="" /></span>
-								<h3>Accumsan integer</h3>
+								<span class="image featured"><img src="images/Login.png" alt="" /></span>
+								<h2>Registra usuarios</h2>
+								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+								<ul class="actions">
+									<li><a href="#" class="button alt">Learn More</a></li>
+								</ul>
+							</section>
+
+						</div>
+							<div class="6u 12u(narrower)">
+
+							<section class="box special">
+								<span class="image featured"><img src="images/mail.png" alt="" /></span>
+								<h2>Envia Campañas</h2>
+								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+								<ul class="actions">
+									<li><a href="#" class="button alt">Learn More</a></li>
+								</ul>
+							</section>
+
+						</div>
+						<div class="6u 12u(narrower)">
+
+							<section class="box special">
+								<span class="image featured"><img src="images/Solicitud.png" alt="" /></span>
+								<h2>Formulario Inscripción</h2>
 								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
 								<ul class="actions">
 									<li><a href="#" class="button alt">Learn More</a></li>
