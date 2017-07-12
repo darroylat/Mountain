@@ -31,4 +31,10 @@ class Ubicacion_model extends CI_Model {
     }
 
   }
+  public function listalugares(){
+        	
+        	$query=$this->db->query('SELECT * FROM UBICACION');
+        	return $query;
+        	
+        }
 }

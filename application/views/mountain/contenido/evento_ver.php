@@ -1,42 +1,94 @@
+<script>
+
+(function ($) {
+    "use strict";
+    var mainApp = {
+
+        initFunction: function () {
+            /*MENU 
+            ------------------------------------*/
+            $('#main-menu').metisMenu();
+			
+            $(window).bind("load resize", function () {
+                if ($(this).width() < 768) {
+                    $('div.sidebar-collapse').addClass('collapse')
+                } else {
+                    $('div.sidebar-collapse').removeClass('collapse')
+                }
+            });
+
+        },
+
+        initialization: function () {
+            mainApp.initFunction();
+
+        }
+
+    }
+    // Initializing ///
+
+    $(document).ready(function () {
+        mainApp.initFunction();
+    });
+
+}(jQuery));
+	
+</script>
 <div id="page-wrapper" >
     <div class="row">
-    		<h1>Salidas de Trekking</h1>
+    					<h1 class="page-header">
+                            Salidas de Trekking 
+                            <br>
+                            <small>Encuentra todas las salidas y sus detalles</small>
+                        </h1>
     	</div>
     <div id="page-inner">
     <div class="row">
-                    <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div class="col-md-2 col-sm-12 col-xs-4">
                         <div class="panel panel-primary text-center no-boder bg-color-green">
                             <div class="panel-body">
-                                <i class="fa fa-bar-chart-o fa-5x"></i>
+                                <i class="fa fa-bar-chart-o fa-3x"></i>
                                 <h3><?=$cntactivos?></h3>
                             </div>
                             <div class="panel-footer back-footer-green">
-                                Salidas Activas
+                                Activas
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div class="col-md-2 col-sm-6 col-xs-4">
                         <div class="panel panel-primary text-center no-boder bg-color-red">
                             <div class="panel-body">
-                                <i class="fa fa-bar-chart-o fa-5x"></i>
+                                <i class="fa fa-bar-chart-o fa-3x"></i>
                                 <h3><?=$cntcerradas?></h3>
                             </div>
                             <div class="panel-footer back-footer-red">
-                            	Salidas cerradas
+                            Cerradas
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div class="col-md-2 col-sm-6 col-xs-4">
                         <div class="panel panel-primary text-center no-boder bg-color-brown">
                             <div class="panel-body">
-                                <i class="fa fa-bar-chart-o fa-5x"></i>
+                                <i class="fa fa-bar-chart-o fa-3x"></i>
                                 <h3><?=$cntcanceladas?> </h3>
                             </div>
                             <div class="panel-footer back-footer-brown">
-                            	Salidas canceladas
+                            	Canceladas
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+						<div class="panel panel-default">
+				        	<div class="panel-heading">
+				            	Resumen Salidas Activas:
+				        	</div>
+							<div class="panel-body">
+								<button class="btn btn-sm btn-danger" type="text"></i> <?=$sumeneventosact->INSCRITO?> Inscrito</button>
+								<button class="btn btn-sm btn-warning" type="text"></i><?=$sumeneventosact->CONFIRMAR?> Confirmar</button>
+							    <button class="btn btn-sm btn-success" type="text"></i><?=$sumeneventosact->PAGADO?> Pagado</button>
+							</div>
+						</div>
+					</div>
         </div>
 	<div class="row">
                 <div class="col-md-12">
@@ -49,36 +101,31 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTables-example">
                                     <thead class="btn-info">	
-                                    		<th>Acciones</th>
                                     		<th>NOMBRE SALIDA</th>
                                             <th>F. DE SALIDA</th>
-                                            <th>HORA</th>
+                                            <th>Registrados</th>
                                             <th>F. CIERRE INSCRIPCIONES</th>
-                                            <th>PTO. ENCUENTRO</th>
+                                            <th>Estado</th>
                                             <th>VALOR</th>
                                             
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php foreach ($listaeventos as $salidas){?>
-                                        <?php 
-                                        $color=$salidas->ESTADO;
-                                        if ($color==1) { 
-                                        echo "<tr class='btn-danger'>";
-                                        } else { 
-                                        echo "<tr class='btn-success'>";
-                                        }
-                                        ?>                    					
-                    						<td>
-                                              <a href="<?php echo site_url('Evento/ver');?>/<?= $salidas->IDEVENTO; ?>"><button type="button" name="button" class="btn btn-primary glyphicon glyphicon-eye-open"></button></a>
-                                              <button type="button" name="button" class="btn btn-success glyphicon glyphicon-edit"></button>
-                                              <button type="button" name="button" class="btn btn-danger glyphicon glyphicon-trash"></button>
-                                            </td>
-                                            <td><?= $salidas->NOMBRE; ?></td>
+                                      <tr>
+                                            <td><a href="<?php echo site_url('Evento/ver');?>/<?= $salidas->IDEVENTO; ?>"><?= $salidas->NOMBRE; ?></a></td>
                                             <td><?= $salidas->FECHA; ?></td>
-                                            <td><?= $salidas->HORA; ?></td>
+                                            <td><?= $salidas->CNTINSCRITOS; ?></td>
                                             <td><?= $salidas->FECHACIERRE; ?></td>
-                                            <td><?= $salidas->PUNTO; ?></td>
+                                            <td><?php  
+                                            if($salidas->ESTADO==0)
+                                            {
+                                            	
+                                            	echo "<button type='button' class='btn btn-success btn-circle'><i class='glyphicon glyphicon-eye-open'>A</i></button>";
+                                            }
+                                            else {
+                                            	echo "<button type='button' class='btn btn-danger btn-circle'><i class='glyphicon glyphicon-eye-close'>C</i></button>";
+                                            }                                            ?></td>
                                             <td>$<?= $salidas->VALOR; ?></td>
                                         </tr>
                     					<?php } ?>
@@ -92,7 +139,6 @@
                 </div>
             </div>
 </div>
-                 <!-- /. ROW  -->
-<footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p></footer>
+
 </div>
 </div>

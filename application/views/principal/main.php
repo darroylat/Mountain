@@ -16,7 +16,7 @@
 								<h2>Maneja Base Datos</h2>
 								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
 								<ul class="actions">
-									<li><a href="#" class="button alt">Learn More</a></li>
+									
 								</ul>
 							</section>
 
@@ -28,7 +28,7 @@
 								<h2>Registra usuarios</h2>
 								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
 								<ul class="actions">
-									<li><a href="#" class="button alt">Learn More</a></li>
+									
 								</ul>
 							</section>
 
@@ -40,7 +40,7 @@
 								<h2>Envia Campañas</h2>
 								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
 								<ul class="actions">
-									<li><a href="#" class="button alt">Learn More</a></li>
+									
 								</ul>
 							</section>
 
@@ -52,7 +52,7 @@
 								<h2>Formulario Inscripción</h2>
 								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
 								<ul class="actions">
-									<li><a href="#" class="button alt">Learn More</a></li>
+									
 								</ul>
 							</section>
 

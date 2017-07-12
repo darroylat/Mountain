@@ -26,6 +26,7 @@ class Administracion extends CI_Controller{
 		$cantidadusuarios=$this->Admin_model->contadorusuarios();/*Ejecujatamos la query*/
 		$cantidaddeposito=$this->Admin_model->contadordepositos();/*Ejecujatamos la query*/
 		$cantidadcnc=$this->Admin_model->comprobantesnocomprantes();/*revisar como cargar en grafico*/
+		$cantidadcncpor=$this->Admin_model->comprobantesnocomprantesporconfirmar();/*revisar como cargar en grafico*/
 		$sexousuarios=$this->Admin_model->sexousuarios();/*revisar como cargar en grafico*/
 		$listausuarios=$this->Admin_model->listausuarios();/*Ejecujatamos la query*/
 		$listaservicios=$this->Admin_model->listaservicios();/*Ejecujatamos la query*/
@@ -35,6 +36,7 @@ class Administracion extends CI_Controller{
 		$data["cantidadusuarios"]=$cantidadusuarios["contadorusuario"];
 		$data["cantidaddepositos"]=$cantidaddeposito["CONTADORDEPOSITOS"];
 		$data["cantidadcnc"]=$cantidadcnc;
+		$data["cantidadcncpor"]=$cantidadcncpor;
 		$data["cantidadsxuser"]=$sexousuarios;
 		$data["listausuarios"]=$listausuarios;
 		$data["listaservicios"]=$listaservicios;

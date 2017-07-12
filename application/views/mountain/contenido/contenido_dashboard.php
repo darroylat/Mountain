@@ -61,7 +61,30 @@
 				
 				  }
 			});
-            
+            /* MORRIS AREA CHART
+			----------------------------------------*/
+
+            Morris.Area({
+                element: 'morris-area-chart',
+                data: [
+                <?php foreach($cantidadcncpor as $graf2){ ?>
+		    	{
+                    period: '<?=$graf2->FECHAREGISTRO;?>',
+                    iphone: <?= $graf2->INSCRITOS;?>,
+                    ipad: <?=$graf2->CONFIRMAR;?>,
+                    itouch:<?=$graf2->PAGADO;?>
+                },
+                
+				<?php } ?>	
+                	
+                ],
+                xkey: 'period',
+                ykeys: ['iphone', 'ipad', 'itouch'],
+                labels: ['Inscritos', 'Por confirmar', 'Pagados'],
+                pointSize: 2,
+                hideHover: 'auto',
+                resize: true
+            });
 
             /* MORRIS DONUT CHART
 			----------------------------------------*/
@@ -105,6 +128,13 @@
 	
 </script>
 <div id="page-wrapper">
+	<div class="row">
+    					<h1 class="page-header">
+                            Resumen de Salidas de Trekking
+                            <br>
+                            <small>Inscripciones, depositos, usuarios</small>
+                        </h1>
+    	</div>
             <div id="page-inner">
 
                 <div class="row">
@@ -115,7 +145,7 @@
                                 <h3><?=$cantidadaeventos?></h3>
                             </div>
                             <div class="panel-footer back-footer-green">
-                               <a class="btn-success" href="<?php echo site_url('evento/ver_eventos'); ?>"> Eventos disponibles</a>
+                               <a class="btn-success" href="<?php echo site_url('evento/ver_eventos'); ?>"> Salidas de Trekking Activos</a>
                             </div>
                         </div>
                     </div>
@@ -126,8 +156,7 @@
                                 <h3><?=$cantidaddepositos?></h3>
                             </div>
                             <div class="panel-footer back-footer-blue">
-                                Nuevos depositos
-
+                               <a class="btn-info" href="<?php echo site_url('informes/depositos'); ?>">Nuevos Depositos en Trekking Activos </a>
                             </div>
                         </div>
                     </div>
@@ -138,7 +167,7 @@
                                 <h3><?=$cantidadusuarios?></h3>
                             </div>
                             <div class="panel-footer back-footer-brown">
-                                <a class="btn-warning" href="<?php echo site_url('Usuario/ver_usuarios'); ?>">Usuarios Disponibles</a>
+                                <a class="btn-warning" href="<?php echo site_url('Usuario/ver_usuarios'); ?>">Inscripciones en Trekking Activos</a>
 
                             </div>
                         </div>
@@ -149,10 +178,10 @@
                 <div class="row">
 
 
-                    <div class="col-md-9 col-sm-12 col-xs-12">
+                    <div class="col-md-12 col-sm-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Resumen de las 2 ultimas salidas de trekking
+                                Resumen de las 10 ultimas salidas de trekking
                             </div>
                             <div class="panel-body">
                                 <div id="morris-bar-chart">
@@ -171,71 +200,20 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-9 col-sm-12 col-xs-12">                     
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Resumen de eventos con inscripciones
+                        </div>
+                        <div class="panel-body">
+                            <div id="morris-area-chart"></div>
+                        </div>
+                    </div>            
+                </div> 
 
                 </div>
-                <!-- /. ROW  -->
-
-                <div class="row">
-                    <div class="col-md-4 col-sm-12 col-xs-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Lista de salidas y pack
-                            </div>
-                            <div class="panel-body">
-                                <div class="list-group">
-										<?php foreach ($listaservicios->result() as $servicios){?>
-                    					
-                    
-                							
-                                     <a href="#" class="list-group-item">
-                                        <i class="fa fa-fw fa-comment"></i> <?= $servicios->eventos; ?>
-                                    </a>       
-                    					<?php } ?>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-md-8 col-sm-12 col-xs-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Lista de usuarios
-                            </div>
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>NOMBRES </th>
-                                                <th>APELLIDOS</th>
-                                                <th>TELEFONOS</th>
-                                                <th>NIVEL</th>
-                                                <th>CORREO</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                    	<?php foreach ($listausuarios->result() as $usuarios){?>
-                    					<tr>
-                    
-                							<td><?= $usuarios->NOMBRE; ?></td>
-                                            <td><?= $usuarios->APELLIDO; ?></td>
-                                            <td><?= $usuarios->TELEFONO; ?></td>
-                                            <td><?= $usuarios->NIVEL; ?></td>
-                                            <td><?= $usuarios->EMAIL; ?></td>
-                                        </tr>
-                    					<?php } ?>
-                                            
-                                                
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
-                <!-- /. ROW  -->
-				<footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p></footer>
+
             </div>
             <!-- /. PAGE INNER  -->
         </div>

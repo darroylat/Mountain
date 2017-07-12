@@ -2,7 +2,6 @@
 				<section id="main" class="container 75%">
 					<header>
 						<h2>Contáctenos</h2>
-						<p>Tell us what you think about our little operation.</p>
 					</header>
 					<div class="box">
 						<form method="post" action="#">

@@ -46,41 +46,63 @@ class Admin_model extends CI_Model {
         //contador salidas de trekking
         public function contadoreventos(){
         	
-        	$query=$this->db->query('select count(*) as contadoreventos from EVENTO');
+        	$query=$this->db->query('select count(*) as contadoreventos from EVENTO where estado=0');
         	return $query->row_array();
         	
         }
         //Contador de inscritos que realizaron su deposito
          public function contadordepositos(){
         	
-        	$query=$this->db->query('SELECT COUNT(IDINSCRIPCION) AS CONTADORDEPOSITOS FROM INSCRIPCIONEVENTO WHERE COMPROBANTE=1');
+        	$query=$this->db->query('SELECT COUNT(IDINSCRIPCION) AS CONTADORDEPOSITOS FROM 
+INSCRIPCIONEVENTO I
+									LEFT JOIN EVENTO E
+									ON E.IDEVENTO=I.IDEVENTO
+WHERE COMPROBANTE=1 AND E.ESTADO=0');
         	return $query->row_array();
         	
         }
-        // Contador total de usuarios registrados
+        // Contador total de usuarios inscritos por eventos activos
         public function contadorusuarios(){
         	
-        	$query=$this->db->query('select count(*) as contadorusuario from USUARIO');
+        	$query=$this->db->query('SELECT COUNT(IDINSCRIPCION) AS contadorusuario FROM 
+					INSCRIPCIONEVENTO I
+														LEFT JOIN EVENTO E
+														ON E.IDEVENTO=I.IDEVENTO
+					WHERE COMPROBANTE=0 AND E.ESTADO=0');
         	return $query->row_array();
         	
         }
+       
         //Grafico ingresados y pagados
         public function comprobantesnocomprantes(){
         	
-        	$query=$this->db->query('select E.nombre AS NOMBRE,COALESCE ((select COUNT(I.COMPROBANTE)
+        	$query=$this->db->query('select SUBSTRING(E.nombre,1,5)  AS NOMBRE,COALESCE ((select COUNT(I.COMPROBANTE)
 			from EVENTO ES1
 			LEFT JOIN INSCRIPCIONEVENTO I ON ES1.IDEVENTO=I.IDEVENTO
 			WHERE COMPROBANTE=2 AND ES1.IDEVENTO=E.IDEVENTO
 			GROUP BY ES1.IDSENDERO),0) AS PAGADO,
+                        COALESCE(
                         (select COUNT(I.COMPROBANTE)
 			from EVENTO ES1
 			LEFT JOIN INSCRIPCIONEVENTO I ON ES1.IDEVENTO=I.IDEVENTO
 			WHERE COMPROBANTE IN (0,1) AND ES1.IDEVENTO=E.IDEVENTO
-			GROUP BY ES1.IDSENDERO) AS INSCRITOS
+			GROUP BY ES1.IDSENDERO),0) AS INSCRITOS
 			from EVENTO E
 			LEFT JOIN INSCRIPCIONEVENTO I ON E.IDEVENTO=I.IDEVENTO
-			GROUP BY E.IDSENDERO
-			Limit 2');
+			GROUP BY E.IDSENDERO DESC
+			Limit 10');
+        	return $query->result();
+        }
+        public function comprobantesnocomprantesporconfirmar(){
+        	
+        	$query=$this->db->query('SELECT E.IDEVENTO,E.FECHAREGISTRO,
+sum(case when I.COMPROBANTE = 0 then 1 else 0 end) AS INSCRITOS,
+sum(case when I.COMPROBANTE = 1 then 1 else 0 end) AS CONFIRMAR,
+sum(case when I.COMPROBANTE = 2 then 1 else 0 end) AS PAGADO
+FROM EVENTO E
+LEFT OUTER JOIN INSCRIPCIONEVENTO I
+ON E.IDEVENTO=I.IDEVENTO
+GROUP BY E.IDEVENTO');
         	return $query->result();
         }
         // Resumen de la cantidad de hombres y mujeres

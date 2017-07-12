@@ -37,11 +37,13 @@ class Evento extends CI_Controller{
 		$config['db_debug'] = TRUE;
 	 	$this->load->model('Evento_model','',$config);
 		$Listaeventos=$this->Evento_model->Listaeventos();/*Ejecujatamos la query*/
+		$sumeneventosact=$this->Evento_model->resumensalidasactivas();
 		$counteventosActivos=$this->Evento_model->counteventosActivos();/*Ejecujatamos la query*/
 		$counteventosCerradas=$this->Evento_model->counteventosCerradas();/*Ejecujatamos la query*/
 		$counteventosCanceladas=$this->Evento_model->counteventosCanceladas();/*Ejecujatamos la query*/
 		
 		$informeeventos["listaeventos"]=$Listaeventos;
+		$informeeventos["sumeneventosact"]=$sumeneventosact;
 		$informeeventos["cntactivos"]=$counteventosActivos["CONTADOR"];
 		$informeeventos["cntcerradas"]=$counteventosCerradas["CONTADOR"];
 		$informeeventos["cntcanceladas"]=$counteventosCanceladas["CONTADOR"];
@@ -71,41 +73,96 @@ class Evento extends CI_Controller{
 		$punto = $this->input->post("punto");
 		$ubicacion = $this->input->post("ubicacion");
 		$sendero = $this->input->post("sendero");
-		$foto = $this->input->post("foto");
+		//$foto = $this->input->post("foto");
 		$equipos=$this->input->post("equipo");
 		$fechaevento = $this->input->post("fechaevento");
 		$horaevento = $this->input->post("horaevento");
 		$fechatermino = $this->input->post("fechatermino");
 		$valor = $this->input->post("valor");
-		$arrayequipo = $this->input->post("equipo");
+		//$arrayequipo = $this->input->post("equipo");
 		
-		$evento = $this->Evento_model->insert_evento($sendero,$nombre, $descripcion, $fechaevento, $horaevento, $fechatermino, $valor, $punto, $foto);
+		$evento = $this->Evento_model->insert_evento($sendero,$nombre, $descripcion, $fechaevento, $horaevento, $fechatermino, $valor, $punto);
 
 		if ($evento) {
 		
-		if ($equipos) {
+		$target_dir ="images/eventos/";
+		$target_file = $target_dir . basename($_FILES["foto"]["name"]);
+		$uploadOk = 1;
+		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+	
+		$check = getimagesize($_FILES["foto"]["tmp_name"]);
+    	if($check !== false) {
+    	
+    		echo "tenemos la imagen";
+    		// Check if file already exists
+			if (file_exists($target_file)) {
+			    echo "Sorry, file already exists.";
+			    $uploadOk = 0;
+			}
+			if ($_FILES["foto"]["size"] > 5000000) {
+			    echo "Disculpe,Archivo es muy pesado.";
+			    $uploadOk = 0;
+			}
+			if($imageFileType != "jpg" && $imageFileType != "JPG") {
+			    echo "Disculpe, Solo formato JPG, JPEG, PNG & GIF files are allowed. <br>";
+			    $uploadOk = 0;
+			}
+			if ($uploadOk != 0) {
+			     $target_file = $target_dir .$evento.".".$imageFileType;
+			    if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file))
+			    {
+			    	//echo "foto copiada";
+			    	@$nombreimagen="images/eventos/".$evento.".".$imageFileType;
+					@$nombreimagen2="images/eventos/".$evento.".".$imageFileType;
+					//tamaño definido
+					$ancho=360;
+					$alto=306;
+					//Modificar imagen a tamaño definido.
+							$viejaimagen=imagecreatefromjpeg($nombreimagen2);
+							$nuevaimagen=imagecreatetruecolor(360,306);
+							imagecopyresized($nuevaimagen,$viejaimagen,0,0,0,0,$ancho,$alto,imagesx($viejaimagen),imagesy($viejaimagen));
+							$ruta_real_imagenes=$nombreimagen2;
+							imagejpeg($nuevaimagen,$nombreimagen2);
+							//echo "imagen recortada";
+							if ($equipos) {
 		
-		foreach ($equipos as $names)
-		{
-			$this->load->model('Evento_model','',$config);
-			$evento = $this->Evento_model->insert_equipo($names,$evento);			
-		       // print "Id Equipo utilizado $names"." id evento".$evento."<br/> ";
-			
-			
-		}
-		redirect('/Evento');
-		}
-		else {
-		redirect('/Evento');
+							foreach ($equipos as $names)
+							{
+								$this->load->model('Evento_model','',$config);
+								$evento = $this->Evento_model->insert_equipo($names,$evento);			
+							       
+								
+								
+							}
+							redirect(base_url()."Evento/ver/".$evento);
+							
+								
+							}
+							else {
+							redirect('/Evento');
+							
+							}
+			    }
+			    
+			}
+			else
+			{
+				echo "Disculpe, No se ha podido cargar la imagen.";
+			}
+    	}
+    	else
+    	{
+    		echo "no hay imagen";
+    	}
+		
+		
 		
 		}
-		//	foreach ($equipos as $key) {
-				//echo $key.'</br>';
-		//		$idcapture = $this->Evento_model->insert_equipo();
-		//		$this->load->model('Equipo_model','',$config);
-		//		$this->Equipo_model->insert_equipo($key, $idcapture);
-		//	}
-		}
+		
+		
+		
+		
+		
 
 	}
 	
@@ -136,6 +193,8 @@ class Evento extends CI_Controller{
 		$consulta['comprobante'] = $comprobante;
 		$consulta['equipo'] = $equipo;
 		$consulta['cantidad'] = $cantidad;
+		$consulta['imagen'] = $id;
+		
 		
 		$data['encabezado'] = 'mountain/encabezado';
 		$data['menu'] = 'mountain/menu';

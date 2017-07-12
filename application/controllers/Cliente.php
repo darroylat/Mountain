@@ -74,6 +74,7 @@ class Cliente extends CI_Controller{
 		if($query != null){
 				$cliente_data = array(
                'id' => $query['IDCLIENTE'],
+               'empr' => $query['EMPRESA'],
                'nombre' => $query['NOMBRECLIENTE'],
 							 'usuario' => $query['USUARIOCLIENTE'],
 							 'basedatos' => $query['DATOSCLIENTE'],

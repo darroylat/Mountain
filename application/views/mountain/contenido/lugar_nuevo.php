@@ -1,3 +1,39 @@
+<script>
+
+(function ($) {
+    "use strict";
+    var mainApp = {
+
+        initFunction: function () {
+            /*MENU 
+            ------------------------------------*/
+            $('#main-menu').metisMenu();
+			
+            $(window).bind("load resize", function () {
+                if ($(this).width() < 768) {
+                    $('div.sidebar-collapse').addClass('collapse')
+                } else {
+                    $('div.sidebar-collapse').removeClass('collapse')
+                }
+            });
+
+        },
+
+        initialization: function () {
+            mainApp.initFunction();
+
+        }
+
+    }
+    // Initializing ///
+
+    $(document).ready(function () {
+        mainApp.initFunction();
+    });
+
+}(jQuery));
+	
+</script>
 <div id="page-wrapper" >
             <div id="page-inner">
 			           <div class="row">
@@ -76,7 +112,7 @@
                                     </div>
                                     <div class="col-lg-12">
                                       <!--Botones para guardar el evento o volver a la pagina de inicio -->
-                                      <input type="submit" class="btn btn-default" value="Guardar"/>
+                                      <input type="submit" class="btn btn-success" value="Guardar"/>
                                       <!--a href="#" class="btn btn-default">Cancelar</a-->
                                     </div>
                                 </form>

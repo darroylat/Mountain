@@ -4,7 +4,7 @@ class Evento_model extends CI_Model {
     $this->load->database();
   }
 
-  public function insert_evento($sendero,$nombre, $descripcion, $fecha, $hora, $fechacierre, $valor, $punto, $foto){
+  public function insert_evento($sendero,$nombre, $descripcion, $fecha, $hora, $fechacierre, $valor, $punto){
 
     $data['IDSENDERO'] = $sendero;
     $data['NOMBRE'] = $nombre;
@@ -14,7 +14,6 @@ class Evento_model extends CI_Model {
     $data['FECHACIERRE'] = $fechacierre;
     $data['VALOR'] = $valor;
     $data['PUNTO'] = $punto;
-    $data['FOTO'] = $foto;
     //$data['FECHA'] = 'NOW()';
     $this->db->insert('EVENTO', $data);
 
@@ -46,7 +45,7 @@ class Evento_model extends CI_Model {
 	}
 	// CONSULTAS DE EVENTO
 	public function getEvento($id){
-		$query = $this->db->query("SELECT NOMBRE, DESCRIPCION, FECHA, HORA, DATE_FORMAT(FECHACIERRE, '%d-%m-%Y') AS FECHACIERRE, PUNTO
+		$query = $this->db->query("SELECT NOMBRE, DESCRIPCION, FECHA, HORA, DATE_FORMAT(FECHACIERRE, '%d-%m-%Y') AS FECHACIERRE, PUNTO,ESTADO
 									FROM EVENTO
 									WHERE IDEVENTO=".$id);
 		
@@ -79,6 +78,7 @@ class Evento_model extends CI_Model {
 									AND I.IDEVENTO = '.$id);
 		return $query->row();
 	}
+	
 	public function getUsuariosInscritos($id){
 		$query = $this->db->query("SELECT U.IDUSUARIO,CONCAT(U.NOMBRE,' ',U.APELLIDO) AS NOMBRE, I.COMPROBANTE, U.IDNIVEL 
 									FROM EVENTO E
@@ -119,7 +119,10 @@ class Evento_model extends CI_Model {
 	}
 	public function Listaeventos(){
         	
-        	$query=$this->db->query('SELECT IDEVENTO,NOMBRE,FECHA,HORA,FECHACIERRE,PUNTO,VALOR,ESTADO from EVENTO order by FECHAREGISTRO DESC');
+        	$query=$this->db->query('SELECT IDEVENTO,NOMBRE,FECHA,HORA,FECHACIERRE,PUNTO,VALOR,ESTADO,
+										COALESCE((SELECT COUNT(IDINSCRIPCION) FROM
+										INSCRIPCIONEVENTO WHERE IDEVENTO=EVENTO.IDEVENTO),0) AS CNTINSCRITOS
+										 from EVENTO order by FECHAREGISTRO DESC');
         	return $query->result();
         	
     }
@@ -144,5 +147,14 @@ class Evento_model extends CI_Model {
     	return $query->row_array();
     	
     }
+  public function resumensalidasactivas(){
+		$query = $this->db->query('SELECT 
+									sum(case when COMPROBANTE = 0 then 1 else 0 end) AS INSCRITO,
+									sum(case when COMPROBANTE = 1 then 1 else 0 end) AS CONFIRMAR,
+									sum(case when COMPROBANTE = 2 then 1 else 0 end) AS PAGADO
+									FROM INSCRIPCIONEVENTO
+									WHERE IDEVENTO IN (SELECT IDEVENTO FROM EVENTO WHERE ESTADO=0)');
+		return $query->row();
+	}
   
 }

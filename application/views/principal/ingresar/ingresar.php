@@ -3,7 +3,6 @@
 				<section id="main" class="container 75%">
 					<header>
 						<h2>Ingresa al portal</h2>
-						<p>Tell us what you think about our little operation.</p>
 					</header>
 					<div class="box">
 						<form method="post" action="<?php echo base_url(); ?>cliente/ingresar">

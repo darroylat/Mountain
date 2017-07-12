@@ -5,6 +5,34 @@ class Sendero extends CI_Controller{
 
 	public function index(){
 
+		$config['hostname'] = 'localhost';
+		$config['username'] = 'root';
+		$config['password'] = '';
+		$config['database'] = $this->session->userdata('basedatos');
+		$config['dbdriver'] = 'mysqli';
+		$config['dbprefix'] = '';
+		$config['pconnect'] = FALSE;
+		$config['db_debug'] = TRUE;
+		
+		$this->load->model('Ubicacion_model','',$config);
+		$this->load->model('Sendero_model','',$config);
+		$ubicacion = $this->Ubicacion_model->all_ubicacion();
+		$nivel = $this->Sendero_model->all_dificultad();
+		if ($ubicacion != FALSE) {
+			$consultas['ubicacion'] = $ubicacion;
+		}
+		if ($nivel != FALSE) {
+			$consultas['nivel'] = $nivel;
+		}
+		$data['datos'] = $consultas;
+		$data['contenido'] = 'mountain/contenido/sendero_nuevo';
+		
+		$data['encabezado'] = 'mountain/encabezado';
+		$data['menu'] = 'mountain/menu';
+    	$data['title'] = 'Mountain';
+
+		$this->load->view('template_mountain',$data);
+	
 	}
   public function agregar(){
     $config['hostname'] = 'localhost';
@@ -34,6 +62,29 @@ class Sendero extends CI_Controller{
       redirect('/administracion');
     }
   }
+  public function ver_senderos()
+	{
+		$config['hostname'] = 'localhost';
+		$config['username'] = 'root';
+		$config['password'] = '';
+		$config['database'] = $this->session->userdata('basedatos');
+		$config['dbdriver'] = 'mysqli';
+		$config['dbprefix'] = '';
+		$config['pconnect'] = FALSE;
+		$config['db_debug'] = TRUE;
+		$this->load->model('Sendero_model','',$config);/* cargamos modelo con query*/
+		$listasenderos=$this->Sendero_model->listasenderos();/*Ejecujatamos la query*/
+		
+		$consulta["listasenderos"]=$listasenderos;
+		
+		$data['encabezado'] = 'mountain/encabezado';
+		$data['menu'] = 'mountain/menu';
+		$data['contenido'] = 'mountain/contenido/sendero_ver';
+		$data['datos'] = $consulta;
+		
+		$this->load->helper('url');
+		$this->load->view('template_mountain', $data);
+	}
   public function mostrar(){
     $config['hostname'] = 'localhost';
 		$config['username'] = 'root';

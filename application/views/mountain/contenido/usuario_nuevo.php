@@ -1,9 +1,46 @@
+<script>
+
+(function ($) {
+    "use strict";
+    var mainApp = {
+
+        initFunction: function () {
+            /*MENU 
+            ------------------------------------*/
+            $('#main-menu').metisMenu();
+			
+            $(window).bind("load resize", function () {
+                if ($(this).width() < 768) {
+                    $('div.sidebar-collapse').addClass('collapse')
+                } else {
+                    $('div.sidebar-collapse').removeClass('collapse')
+                }
+            });
+
+        },
+
+        initialization: function () {
+            mainApp.initFunction();
+
+        }
+
+    }
+    // Initializing ///
+
+    $(document).ready(function () {
+        mainApp.initFunction();
+    });
+
+}(jQuery));
+	
+</script>
 <div id="page-wrapper" >
             <div id="page-inner">
 			           <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                            Ingreso de Usuario <small></small>
+                            Nuevo Usuario <br>
+                            <small>Ingresa la información y registra un usuario.</small>
                         </h1>
                     </div>
                 </div>
@@ -12,72 +49,72 @@
                   <div class="col-lg-12">
                       <div class="panel panel-default">
                           <div class="panel-heading">
-                              Datos básicos
+                              Crear nuevo usuario
                           </div>
                           <div class="panel-body">
                               <div class="row">
-                                <form role="form" method="post" action="<?php echo base_url(); ?>equipo/agregar">
+                                <form role="form" method="post" action="<?php echo base_url(); ?>usuario/crear">
                                     <div class="col-lg-3">
                                       <!--Nombre del evento a crear -->
                                       <div class="form-group">
                                           <label>Rut</label>
-                                          <input name="nombre" class="form-control" placeholder="1234567-8">
+                                          <div class="form-group input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                                <input name="rut" type="text" class="form-control" placeholder="Rut sin digito verificador">
+                                                </div>
                                       </div>
                                     </div>
                                     <div class="col-lg-3">
                                       <div class="form-group">
                                           <label>Contraseña</label>
-                                          <input type="password" name="descripcion" class="form-control" placeholder="Contraseña">
+                                          <input name="contrasena" value="123456" class="form-control" placeholder="Contraseña">
                                       </div>
                                     </div>
-                                    
-                                    <div class="col-lg-3">
-                                      <div class="form-group">
-                                          <label>Repetir Contraseña</label>
-                                          <input type="password" name="descripcion" class="form-control" placeholder="Repetir contraseña">
-                                      </div>
-                                    </div>
-                                    <div class="col-lg-1">
+                                    <div class="col-lg-2">
                                       <div class="form-group">
                                           <label>Sexo</label>
-                                          <select class="form-control">
-										  <option>M</option>
-										  <option>F</option>
-										  <option>Otro</option>
+                                          <div class="form-group input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-record"></span></span>
+                                          <select name="sexo" class="form-control">
+										  <option value="M">M</option>
+										  <option value="F">F</option>
 										  </select>
+										  </div>
                                       </div>
                                     </div>
                                     <div class="col-lg-2">
                                       <div class="form-group">
                                           <label>Nivel</label>
-                                          <select class="form-control">
-										  <option>Básico</option>
-										  <option>Básico Intermedio</option>
-										  <option>Medio</option>
-										  <option>Medio Intermedio</option>
-										  <option>Avanzado</option>
+                                          <div class="form-group input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-signal"></span></span>
+                                          <select name="nivel" class="form-control">
+										  <option value="1">Básico</option>
+										  <option value="2">Básico Intermedio</option>
+										  <option value="3">Medio</option>
+										  <option value="4">Medio Intermedio</option>
+										  <option value="5">Avanzado</option>
 										  
 										  </select>
+										  </div>
                                       </div>
                                     </div>
                                     <div class="col-lg-6">
                                       <!--Nombre del evento a crear -->
                                       <div class="form-group">
                                           <label>Nombres</label>
-                                          <input name="nombre" class="form-control" placeholder="Ingrese el nombre de su evento">
+                                          <div class="form-group input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                                          <input name="nombres" class="form-control" placeholder="Ingrese el nombre de su evento">
+                                          </div>
                                       </div>
-                                      <div class="form-group">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input name="volver" type="checkbox" value="">Recibir correos electronicos
-                                                </label>
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="col-lg-6">
                                       <div class="form-group">
                                           <label>Apelldiso</label>
-                                          <input name="descripcion" class="form-control" placeholder="Ingrese el nombre de su evento">
+                                          <div class="form-group input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                                          <input name="apellidos" class="form-control" placeholder="Ingrese el nombre de su evento">
+                                          </div>
                                       </div>
 
                                     </div>
@@ -85,15 +122,18 @@
                                       <!--Nombre del evento a crear -->
                                       <div class="form-group">
                                           <label>Decripción</label>
-                                        <textarea class="form-control" rows="3"></textarea>
+                                        <textarea name="descripcion" class="form-control" rows="3"></textarea>
                                       </div>
                                     </div>
+                                    
                                     <div class="col-lg-6">
                                       <div class="form-group">
-                                          <label>Correo electronico</label>
-                                          <input name="descripcion" class="form-control" placeholder="Ingrese el nombre de su evento">
+                                          <label>Correo Electrónico</label>
+                                          <div class="form-group input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                                                <input name="correo" type="text" class="form-control" placeholder="ejemplo@correo.cl">
+                                                </div>
                                       </div>
-
                                     </div>
                                     <div class="col-lg-12">
                                       <!--Botones para guardar el evento o volver a la pagina de inicio -->
@@ -107,7 +147,7 @@
                   </div>
                 </div>
                  <!-- /. ROW  -->
-				 <footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p></footer>
+				 <footer><p>SISTEMA WEB DE ADMINISTRACION: <a href="http://webthemez.com">MOUNTAIN</a></p></footer>
 				   </div>
              <!-- /. PAGE INNER  -->
 </div>

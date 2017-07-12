@@ -28,13 +28,35 @@
   <script src="<?php echo base_url(); ?>assets/mountain/js/morris/morris.js"></script>
   <script src="<?php echo base_url(); ?>assets/mountain/js/modal.js"></script>
   <script src="<?php echo base_url(); ?>assets/mountain/default.js"></script>
-  
+  <!-- tablas-->
   <script src="<?php echo base_url(); ?>assets/mountain/js/dataTables/jquery.dataTables.js"></script>
   <script src="<?php echo base_url(); ?>assets/mountain/js/dataTables/dataTables.bootstrap.js"></script>
+  <!-- calendario-->
+
+  
   <script>
             $(document).ready(function () {
-                $('#dataTables-example').dataTable();
+                $('#dataTables-example').dataTable( {
+		        "language": {
+		        	"search": "Buscar:",
+		            "lengthMenu": "Muestra _MENU_ registros por pagina",
+		            "zeroRecords": "No se han encontrado registros",
+		            "info": "Pagina _PAGE_ a _PAGES_",
+		            "infoEmpty": "No records available",
+		            "infoFiltered": "(filtered from _MAX_ total records)",
+		            "paginate": {
+				        "first":      "Primero",
+				        "last":       "Ultimo",
+				        "next":       "Siguiente",
+				        "previous":   "Anterior"
+				    },
+		        },
+		        "order": [[ 4, "asc" ]]
+		        
+		        
+		    } );
             });
+            
     </script>
 </head>
 <body>

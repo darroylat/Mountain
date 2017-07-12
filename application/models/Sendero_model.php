@@ -38,4 +38,10 @@ class Sendero_model extends CI_Model {
 	    	return $query->result();
         	
         }
+	public function listasenderos(){
+        	
+        	$query=$this->db->query('SELECT * FROM SENDERO');
+        	return $query;
+        	
+    }
 }
