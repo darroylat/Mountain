@@ -43,6 +43,6 @@
   			<script src="<?php echo base_url(); ?>assets/principal/js/util.js"></script>
   			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
   			<script src="<?php echo base_url(); ?>assets/principal/js/main.js"></script>
-
+	
   	</body>
   </html>

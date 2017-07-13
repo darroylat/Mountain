@@ -32,6 +32,25 @@
     });
 
 }(jQuery));
+function validacion() {
+  	
+  	var valor= document.getElementById('rut').value;
+  	var pass= document.getElementById('nombres').value;
+  	if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+	  alert('Es requerido ingresar rut');
+	  return false;
+	}
+  	else
+  	{
+  		
+  		if( pass == null || pass.length == 0 || /^\s+$/.test(pass) ) {
+		  alert('Es requerido el nombre');
+		  return false;
+		}
+  	}
+  	 
+  
+}
 	
 </script>
 <div id="page-wrapper" >
@@ -53,14 +72,14 @@
                           </div>
                           <div class="panel-body">
                               <div class="row">
-                                <form role="form" method="post" action="<?php echo base_url(); ?>usuario/crear">
+                                <form role="form" method="post" action="<?php echo base_url(); ?>usuario/crear" onsubmit ="return validacion()">
                                     <div class="col-lg-3">
                                       <!--Nombre del evento a crear -->
                                       <div class="form-group">
                                           <label>Rut</label>
                                           <div class="form-group input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                                <input name="rut" type="text" class="form-control" placeholder="Rut sin digito verificador">
+                                                <input name="rut" id="rut" type="text" class="form-control" placeholder="Rut sin digito verificador">
                                                 </div>
                                       </div>
                                     </div>
@@ -104,13 +123,13 @@
                                           <label>Nombres</label>
                                           <div class="form-group input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                          <input name="nombres" class="form-control" placeholder="Ingrese el nombre de su evento">
+                                          <input name="nombres" id="nombres" class="form-control" placeholder="Ingrese el nombre de su evento">
                                           </div>
                                       </div>
                                     </div>
                                     <div class="col-lg-6">
                                       <div class="form-group">
-                                          <label>Apelldiso</label>
+                                          <label>Apellidos</label>
                                           <div class="form-group input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                                           <input name="apellidos" class="form-control" placeholder="Ingrese el nombre de su evento">
@@ -137,7 +156,7 @@
                                     </div>
                                     <div class="col-lg-12">
                                       <!--Botones para guardar el evento o volver a la pagina de inicio -->
-                                      <input type="submit" class="btn btn-default" value="Guardar"/>
+                                      <input type="submit" class="btn btn-success" value="Guardar"/>
                                       <!--a href="#" class="btn btn-default">Cancelar</a-->
                                     </div>
                                 </form>
@@ -146,8 +165,6 @@
                       </div>
                   </div>
                 </div>
-                 <!-- /. ROW  -->
-				 <footer><p>SISTEMA WEB DE ADMINISTRACION: <a href="http://webthemez.com">MOUNTAIN</a></p></footer>
 				   </div>
              <!-- /. PAGE INNER  -->
 </div>

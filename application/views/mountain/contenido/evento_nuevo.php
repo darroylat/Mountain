@@ -32,6 +32,26 @@
     });
 
 }(jQuery));
+  
+  function validacion() {
+  	
+  	var valor= document.getElementById('nombre').value;
+  	var pass= document.getElementById('descripcion').value;
+  	if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+	  alert('Es requerido el nombre');
+	  return false;
+	}
+  	else
+  	{
+  		
+  		if( pass == null || pass.length == 0 || /^\s+$/.test(pass) ) {
+		  alert('Es requerido la descripcion');
+		  return false;
+		}
+  	}
+  	 
+  
+}
 
 </script>
 
@@ -54,17 +74,17 @@
                           </div>
                           <div class="panel-body">
                               <div class="row">
-                                <form role="form" method="post" action="<?php echo base_url(); ?>evento/crear" enctype="multipart/form-data">
+                                <form role="form" method="post" action="<?php echo base_url(); ?>evento/crear" enctype="multipart/form-data" onsubmit ="return validacion()">
                                     <div class="col-lg-6">
                                       <!--Nombre del evento a crear -->
                                       <div class="form-group">
                                           <label>Nombre</label>
-                                          <input name="nombre" class="form-control" placeholder="CERRO MANQUEHUE">
+                                          <input name="nombre" id="nombre" class="form-control" placeholder="CERRO MANQUEHUE">
                                       </div>
                                       <!--Descripcion del evento -->
                                       <div class="form-group">
                                           <label>Descripción</label>
-                                          <textarea name="descripcion" class="form-control" rows="3" placeholder="TWKD te invita a contemplar la hermosa luna llena este viernes..."></textarea>
+                                          <textarea name="descripcion" id="descripcion" class="form-control" rows="3" placeholder="TWKD te invita a contemplar la hermosa luna llena este viernes..."></textarea>
                                       </div>
                                       <!--Punto de encuentro -->
                                       <div class="form-group">
@@ -130,7 +150,7 @@
                                               <label>Precio</label>
                                               <div class="form-group input-group">
                                                 <span class="input-group-addon">$</span>
-                                                <input  name="valor" type="text" class="form-control">
+                                                <input  name="valor" id="valor" type="text" class="form-control">
                                                 </div>
                                             </div>
                                             

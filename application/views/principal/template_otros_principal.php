@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Contact - Alpha by HTML5 UP</title>
+		<title>Mountain</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -35,6 +35,7 @@
     </div>
 
   		<!-- Scripts -->
+  			
   			<script src="<?php echo base_url(); ?>assets/principal/js/jquery.min.js"></script>
   			<script src="<?php echo base_url(); ?>assets/principal/js/jquery.dropotron.min.js"></script>
   			<script src="<?php echo base_url(); ?>assets/principal/js/jquery.scrollgress.min.js"></script>
@@ -42,6 +43,5 @@
   			<script src="<?php echo base_url(); ?>assets/principal/js/util.js"></script>
   			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
   			<script src="<?php echo base_url(); ?>assets/principal/js/main.js"></script>
-
   	</body>
   </html>

@@ -32,7 +32,25 @@
     });
 
 }(jQuery));
-	
+function validacion() {
+  	
+  	var valor= document.getElementById('nombre').value;
+  	var pass= document.getElementById('descripcion').value;
+  	if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+	  alert('Es requerido nombre');
+	  return false;
+	}
+  	else
+  	{
+  		
+  		if( pass == null || pass.length == 0 || /^\s+$/.test(pass) ) {
+		  alert('Es requerido la descripcion');
+		  return false;
+		}
+  	}
+}
+  	 
+  	
 </script>
 <div id="page-wrapper" >
             <div id="page-inner">
@@ -53,7 +71,7 @@
                           </div>
                           <div class="panel-body">
                               <div class="row">
-                                <form role="form" method="post" action="<?php echo base_url(); ?>Campana/enviar" enctype="multipart/form-data">
+                                <form role="form" method="post" action="<?php echo base_url(); ?>Campana/enviar" enctype="multipart/form-data" onsubmit ="return validacion()">
                                     <div class="col-lg-12">
                                       <!--Nombre del evento a crear -->
                                       <div class="form-group">

@@ -32,7 +32,16 @@
     });
 
 }(jQuery));
-	
+
+function validacion() {
+  	
+  	var valor= document.getElementById('nombre').value;
+  	if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+	  alert('Es requerido el nombre');
+	  return false;
+	}
+  
+}	
 </script>
 <div id="page-wrapper" >
             <div id="page-inner">
@@ -48,11 +57,11 @@
                   <div class="col-lg-12">
                       <div class="panel panel-default">
                           <div class="panel-heading">
-                              Basic Form Elements
+                              Crear senderos para lugares
                           </div>
                           <div class="panel-body">
                               <div class="row">
-                                <form role="form" method="post" action="<?php echo base_url(); ?>sendero/agregar">
+                                <form role="form" method="post" action="<?php echo base_url(); ?>sendero/agregar" onsubmit ="return validacion()" >
                                     <div class="col-lg-6">
                                       <!--Lugar al que pertenece el Sendero -->
                                       <div class="form-group">
@@ -73,17 +82,9 @@
                                           <label>Nombre del sendero</label>
                                           <div class="form-group input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                          <input name="nombre" class="form-control">
+                                          <input name="nombre" id="nombre" class="form-control">
                                           </div>
                                       </div>
-                                      <div class="form-group">
-                                            <label>Opción</label>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input name="volver" type="checkbox" value=""> Guardar y volver a agregar nuevo equipamiento
-                                                </label>
-                                            </div>
-                                        </div>
                                     </div>
 
                                     <div class="col-lg-6">
@@ -118,7 +119,7 @@
                   </div>
                 </div>
                  <!-- /. ROW  -->
-				 <footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p></footer>
+				
 				   </div>
              <!-- /. PAGE INNER  -->
       </div>

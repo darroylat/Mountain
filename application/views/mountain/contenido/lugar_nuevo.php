@@ -32,14 +32,33 @@
     });
 
 }(jQuery));
-	
+
+function validacion() {
+  	
+  	var valor= document.getElementById('nombre').value;
+  	var pass= document.getElementById('descripcion').value;
+  	if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+	  alert('Es requerido el nombre');
+	  return false;
+	}
+  	else
+  	{
+  		
+  		if( pass == null || pass.length == 0 || /^\s+$/.test(pass) ) {
+		  alert('Es requerido la descripcion');
+		  return false;
+		}
+  	}
+  	 
+  
+}	
 </script>
 <div id="page-wrapper" >
             <div id="page-inner">
 			           <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                           Agregando <small>Nueva localidad</small>
+                           Agregando <small>Nueva lugar</small>
                         </h1>
                     </div>
                 </div>
@@ -48,26 +67,21 @@
                   <div class="col-lg-12">
                       <div class="panel panel-default">
                           <div class="panel-heading">
-                              Basic Form Elements
+                              Crear nuevo lugar
                           </div>
                           <div class="panel-body">
                               <div class="row">
-                                <form role="form" method="post" action="<?php echo base_url(); ?>ubicacion/agregar">
+                                <form role="form" method="post" action="<?php echo base_url(); ?>ubicacion/agregar" onsubmit ="return validacion()">
                                     <div class="col-lg-6">
                                       <!--Nombre del lugar -->
                                       <div class="form-group">
                                           <label>Nombre del lugar</label>
-                                          <input name="nombre" class="form-control">
-                                      </div>
-                                      <!--Fotografia para identificar el lugar -->
-                                      <div class="form-group">
-                                          <label>Fotografia</label>
-                                          <input name="foto" type="file">
+                                          <input name="nombre" id="nombre" class="form-control">
                                       </div>
                                       <!--Caracteristicas -->
                                       <div class="form-group">
                                           <label>Caracteristicas</label>
-                                          <textarea name="caracteristica" class="form-control" rows="3"></textarea>
+                                          <textarea name="caracteristica" id="descripcion" class="form-control" rows="3"></textarea>
                                       </div>
                                       <!--Informacion -->
                                       <div class="form-group">
@@ -122,7 +136,6 @@
                   </div>
                 </div>
                  <!-- /. ROW  -->
-				 <footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p></footer>
 				   </div>
              <!-- /. PAGE INNER  -->
       </div>

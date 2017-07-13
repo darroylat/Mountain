@@ -41,8 +41,8 @@ $mail->Port = 465;
  
  
 //Nuestra cuenta
-$mail->Username ='darroylat@gmail.com';
-$mail->Password = 'deal051085'; //Su password
+$mail->Username ='';
+$mail->Password = ''; //Su password
 
 // Dirección de correo del remitente
 $mail->From = "no-reply@lerolero.cl";
