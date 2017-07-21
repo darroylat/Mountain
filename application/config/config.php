@@ -30,6 +30,7 @@ define('SERVER_NAME_EMPRESA', 'mountain.lerolero.cl');
 define('SERVER_NAME_FINAL', 'www.mountain.cl');
 define('SERVER_NAME_LOCAL', '192.168.1.110');
 define('SERVER_NAME_WEB', 'web.lerolero.cl');
+define('SERVER_OPENCLOUD', 'web.opencloud.lerolero.cl');
 
 $nombreServerActual = $_SERVER['SERVER_NAME'];
 switch($nombreServerActual)
@@ -48,6 +49,9 @@ switch($nombreServerActual)
             break;
     case SERVER_NAME_WEB:
     		$config['base_url']	   = "http://web.lerolero.cl/";
+    		break;
+    case SERVER_OPENCLOUD:
+    		$config['base_url']	   = "http://web.opencloud.lerolero.cl";
     		break;
     default:
             $config['base_url']    = $_SERVER['SERVER_NAME'];
