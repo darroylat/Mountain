@@ -5,10 +5,10 @@
     var mainApp = {
 
         initFunction: function () {
-            /*MENU 
+            /*MENU
             ------------------------------------*/
             $('#main-menu').metisMenu();
-			
+
             $(window).bind("load resize", function () {
                 if ($(this).width() < 768) {
                     $('div.sidebar-collapse').addClass('collapse')
@@ -32,7 +32,7 @@
     });
 
 }(jQuery));
-	
+
 </script>
 <div id="page-wrapper" >
 	<div class="row">
@@ -59,7 +59,7 @@
                         <div class="panel panel-primary text-center no-boder bg-color-red">
                             <div class="panel-body">
                                 <i class="fa fa-users fa-3x"></i>
-                                <h3>2</h3>
+                                <h3><?=$cantidadusuariodesactivado?></h3>
                             </div>
                             <div class="panel-footer back-footer-red">
                             	Desactivados
@@ -116,30 +116,30 @@
                                     <tbody>
                                         <?php foreach ($listausuarios->result() as $usuarios){?>
                     					<tr>
-                    
+
                 							<td><a href="<?php echo site_url('usuario/ver');?>/<?= $usuarios->IDUSUARIO; ?>"><?= $usuarios->NOMBRE; ?> <?= $usuarios->APELLIDO; ?></a></td>
 						                	<td><?= $usuarios->TELEFONO; ?></td>
                                             <td><?= $usuarios->NIVEL; ?></td>
                                             <td><?= $usuarios->EMAIL; ?></td>
-                                             <?php 
+                                             <?php
                                             	if($usuarios->AUTOCOMPAR == 1){
                                              		echo "<td>Si</td>";
-                                             } 
+                                             }
                                             else {
                                              		echo "<td>NO</td>";
-                                            	
+
                                             }
-                                            
+
                                             ?>
                                             <td><?= $usuarios->EDAD; ?></td>
                                             <td><?= $usuarios->INSTAGRAM; ?></td>
-                                            
+
                                         </tr>
                     					<?php } ?>
                                     </tbody>
                                 </table>
                             </div>
-                            
+
                         </div>
                     </div>
                     <!--End Advanced Tables -->

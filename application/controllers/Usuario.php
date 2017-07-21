@@ -19,7 +19,7 @@ class Usuario extends CI_Controller{
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index(){
-		
+
 		$data['contenido'] = 'mountain/contenido/usuario_nuevo';
 		$data['encabezado'] = 'mountain/encabezado';
 		$data['menu'] = 'mountain/menu';
@@ -28,7 +28,7 @@ class Usuario extends CI_Controller{
 		$this->load->view('template_mountain',$data);
 	}
 
-	
+
 	public function ver_usuarios()
 	{
 		$config['hostname'] = 'localhost';
@@ -44,21 +44,23 @@ class Usuario extends CI_Controller{
 		$cantidadnuevostrekk=$this->Usuario_model->contadornuevostrekking();/*Ejecujatamos la query*/
 		$cantidadnuevosregistrados=$this->Usuario_model->contadornuevosusuarios();
 		$cantidadusuarioactivos=$this->Usuario_model->contadorusuariosactivos();
+		$cantidadusuariodesactivado=$this->Usuario_model->contadorusuariosdesactivados();
 		$listausuarios=$this->Usuario_model->listausuarios();/*Ejecujatamos la query*/
 		$resumenUsuariosactivos=$this->Usuario_model->resumenUsuariosactivos();
-		
+
 		$hola["resumenUsuariosactivos"]=$resumenUsuariosactivos;
 		$hola["cantidadusuarios"]=$cantidadusuarios["contadorusuario"];
 		$hola["cantidadnuevostrekk"]=$cantidadnuevostrekk["contadorusuario"];
 		$hola["cantidadnuevosregis"]=$cantidadnuevosregistrados["contadorusuario"];
 		$hola["cantidadusuarioactivos"]=$cantidadusuarioactivos["contadorusuario"];
+		$hola["cantidadusuariodesactivado"]=$cantidadusuariodesactivado["contadorusuario"];
 		$hola["listausuarios"]=$listausuarios;
-		
+
 		$data['encabezado'] = 'mountain/encabezado';
 		$data['menu'] = 'mountain/menu';
 		$data['contenido'] = 'mountain/contenido/Usuario_lista';
 		$data['datos'] = $hola;
-		
+
 		$this->load->helper('url');
 		$this->load->view('template_mountain', $data);
 	}
@@ -72,7 +74,7 @@ class Usuario extends CI_Controller{
 		$config['pconnect'] = FALSE;
 		$config['db_debug'] = TRUE;
 		$this->load->model('Usuario_model','',$config);/* cargamos modelo con query*/
-		
+
 		$rut = $this->input->post("rut");
 		$contrasena = $this->input->post("contrasena");
 		$sexo = $this->input->post("sexo");
@@ -81,7 +83,7 @@ class Usuario extends CI_Controller{
 		$apellidos = $this->input->post("apellidos");
 		$descripcion = $this->input->post("descripcion");
 		$correo = $this->input->post("correo");
-		
+
 		$evento = $this->Usuario_model->insert_usuario($rut,$contrasena, $sexo, $nivel,$nombres,$apellidos,$descripcion,$correo);
 
 		if ($evento !="") {
@@ -104,21 +106,21 @@ class Usuario extends CI_Controller{
 	 	$datosemergencia = $this->Usuario_model->datosemergencia($id);
 		$lugaresasistidos = $this->Usuario_model->lugaresasistidos($id);
 		$Inscripcionesusuario = $this->Usuario_model->Inscripcionesusuario($id);
-		
+
 		$consulta['infopersonal'] = $infopersonal;
 		$consulta['equipousuario'] = $equipousuario;
 		$consulta['datosemergencia'] = $datosemergencia;
 		$consulta['lugaresasistidos'] = $lugaresasistidos;
 		$consulta['Inscripcionesusuario'] = $Inscripcionesusuario;
-		
+
 		$data['encabezado'] = 'mountain/encabezado';
 		$data['menu'] = 'mountain/menu';
 		$data['contenido'] = 'mountain/contenido/usuario_individual';
 		$data['datos'] = $consulta;
-		
+
 		$this->load->view('template_mountain', $data);
-		
-		
+
+
 	}
 
 }
